@@ -84,6 +84,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qRg-xm-zFY"/>
+                    <connections>
+                        <segue destination="WAT-8n-Oh0" kind="show" identifier="ShowPhotoDetailSegue" id="2je-gU-6pj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -167,8 +170,13 @@
                             <constraint firstItem="AvO-Qm-Ktb" firstAttribute="trailing" secondItem="OUq-7H-pgf" secondAttribute="trailing" id="kDV-jC-3Od"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="6di-eS-3MH"/>
+                    <connections>
+                        <segue destination="OMZ-4M-qHp" kind="unwind" identifier="UnwindToPhotoListView" unwindAction="unWindToPhotoListView:" id="1RK-hr-MuB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqm-of-J8A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="OMZ-4M-qHp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1511.5942028985507" y="123.88392857142857"/>
         </scene>

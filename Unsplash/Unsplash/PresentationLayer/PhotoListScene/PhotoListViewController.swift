@@ -14,6 +14,10 @@ class PhotoListViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    //MARK:- Interface Builder Links
+    
+    @IBAction func unWindToPhotoListView(_ unwindSegue : UIStoryboardSegue) {
+        
+    }
 }
 
