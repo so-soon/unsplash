@@ -11,6 +11,6 @@ protocol SearchPhotoListUseCase {
     
 }
 
-class SearchPhotoListUseCaseImplementation {
+class SearchPhotoListUseCaseImplementation: SearchPhotoListUseCase {
     
 }
