@@ -13,10 +13,17 @@ protocol PhotoListView {
 }
 
 protocol PhotoListPresenter {
-    
+    func viewDidLoad()
+    func configure(cell : PhotoListTableViewCell, forRow row: Int)
 }
 
 //MARK:- Implementation
 class PhotoListPresenterImplementation : PhotoListPresenter {
     
+    func viewDidLoad(){
+        
+    }
+    func configure(cell : PhotoListTableViewCell, forRow row: Int){
+        
+    }
 }
