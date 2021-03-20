@@ -7,6 +7,10 @@
 
 import Foundation
 
-class SearchPhotoListUseCase {
+protocol SearchPhotoListUseCase {
+    
+}
+
+class SearchPhotoListUseCaseImplementation {
     
 }

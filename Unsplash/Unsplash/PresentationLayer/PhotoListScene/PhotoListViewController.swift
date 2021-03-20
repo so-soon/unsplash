@@ -2,16 +2,16 @@
 //  ViewController.swift
 //  Unsplash
 //
-//  Created by Randy on 2021/03/20.
+//  Created by so-soon on 2021/03/20.
 //
 
 import UIKit
 
-class PhotoListViewController: UIViewController {
-
+class PhotoListViewController: UIViewController,PhotoListView {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
     //MARK:- Interface Builder Links

@@ -7,6 +7,16 @@
 
 import Foundation
 
-class PhotoListPresenter {
+//MARK:- Protocol
+protocol PhotoListView {
+    
+}
+
+protocol PhotoListPresenter {
+    
+}
+
+//MARK:- Implementation
+class PhotoListPresenterImplementation : PhotoListPresenter {
     
 }

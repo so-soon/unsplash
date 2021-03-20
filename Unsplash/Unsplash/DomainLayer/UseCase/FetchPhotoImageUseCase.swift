@@ -7,6 +7,10 @@
 
 import Foundation
 
-class FetchPhotoImageUseCase {
+protocol FetchPhotoImageUseCase {
+    
+}
+
+class FetchPhotoImageUseCaseImplementation: FetchPhotoImageUseCase {
     
 }

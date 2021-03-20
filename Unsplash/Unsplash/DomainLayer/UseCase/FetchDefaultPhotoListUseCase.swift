@@ -7,6 +7,10 @@
 
 import Foundation
 
-class FetchDefaultPhotoListUseCase {
+protocol FetchDefaultPhotoListUseCase {
+    
+}
+
+class FetchDefaultPhotoListUseCaseImplementation: FetchDefaultPhotoListUseCase {
     
 }

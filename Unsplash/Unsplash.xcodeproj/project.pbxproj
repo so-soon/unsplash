@@ -22,7 +22,7 @@
 		25D8A991260643B6009E0BCE /* PhotoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A990260643B6009E0BCE /* PhotoListPresenter.swift */; };
 		25D8A996260643C7009E0BCE /* PhotoListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A995260643C7009E0BCE /* PhotoListConfigurator.swift */; };
 		25D8A99B260643DB009E0BCE /* PhotoListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A99A260643DB009E0BCE /* PhotoListRouter.swift */; };
-		25D8A9A026064400009E0BCE /* PhotoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A99F26064400009E0BCE /* PhotoListTableViewCell.swift */; };
+		25D8A9A026064400009E0BCE /* PhotoListTableViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A99F26064400009E0BCE /* PhotoListTableViewCellController.swift */; };
 		25D8A9A526064415009E0BCE /* PhotoDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A9A426064415009E0BCE /* PhotoDetailCollectionViewCell.swift */; };
 		25D8A9B2260644F8009E0BCE /* PhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A9B1260644F8009E0BCE /* PhotoRepository.swift */; };
 		25D8A9B726064508009E0BCE /* PhotoListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A9B626064508009E0BCE /* PhotoListRepository.swift */; };
@@ -74,7 +74,7 @@
 		25D8A990260643B6009E0BCE /* PhotoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListPresenter.swift; sourceTree = "<group>"; };
 		25D8A995260643C7009E0BCE /* PhotoListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListConfigurator.swift; sourceTree = "<group>"; };
 		25D8A99A260643DB009E0BCE /* PhotoListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListRouter.swift; sourceTree = "<group>"; };
-		25D8A99F26064400009E0BCE /* PhotoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListTableViewCell.swift; sourceTree = "<group>"; };
+		25D8A99F26064400009E0BCE /* PhotoListTableViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListTableViewCellController.swift; sourceTree = "<group>"; };
 		25D8A9A426064415009E0BCE /* PhotoDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		25D8A9B1260644F8009E0BCE /* PhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepository.swift; sourceTree = "<group>"; };
 		25D8A9B626064508009E0BCE /* PhotoListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListRepository.swift; sourceTree = "<group>"; };
@@ -166,8 +166,8 @@
 		25D8A96226064226009E0BCE /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				25D8A96A26064280009E0BCE /* PhotoDetailScene */,
 				25D8A96926064277009E0BCE /* PhotoListScene */,
+				25D8A96A26064280009E0BCE /* PhotoDetailScene */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -197,7 +197,7 @@
 				25D8A990260643B6009E0BCE /* PhotoListPresenter.swift */,
 				25D8A995260643C7009E0BCE /* PhotoListConfigurator.swift */,
 				25D8A99A260643DB009E0BCE /* PhotoListRouter.swift */,
-				25D8A99F26064400009E0BCE /* PhotoListTableViewCell.swift */,
+				25D8A99F26064400009E0BCE /* PhotoListTableViewCellController.swift */,
 				25D8A93326064201009E0BCE /* PhotoListViewController.swift */,
 			);
 			path = PhotoListScene;
@@ -425,7 +425,7 @@
 				25D8A96E260642BA009E0BCE /* PhotoDetailPresenter.swift in Sources */,
 				25D8A9E326064633009E0BCE /* SearchPhotoListUseCase.swift in Sources */,
 				25D8A974260642E4009E0BCE /* PhotoDetailViewController.swift in Sources */,
-				25D8A9A026064400009E0BCE /* PhotoListTableViewCell.swift in Sources */,
+				25D8A9A026064400009E0BCE /* PhotoListTableViewCellController.swift in Sources */,
 				25D8A9A526064415009E0BCE /* PhotoDetailCollectionViewCell.swift in Sources */,
 				25D8A9D62606460A009E0BCE /* FetchDefaultPhotoListUseCase.swift in Sources */,
 				25D8A97D260642F8009E0BCE /* PhotoDetailConfigurator.swift in Sources */,

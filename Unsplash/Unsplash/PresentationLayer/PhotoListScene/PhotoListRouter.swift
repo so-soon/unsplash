@@ -7,6 +7,10 @@
 
 import Foundation
 
-class PhotoListRouter {
+protocol PhotoListRouter {
+    
+}
+
+class PhotoListRouterImplementation: PhotoListRouter {
     
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoListTableViewCell: UITableViewCell {
+class PhotoListTableViewCellController: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

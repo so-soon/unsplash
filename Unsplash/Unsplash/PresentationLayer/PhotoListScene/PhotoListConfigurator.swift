@@ -7,6 +7,12 @@
 
 import Foundation
 
-class PhotoListConfigurator {
-    
+protocol PhotoListConfigurator {
+    func configure(photoListViewController: PhotoListViewController)
+}
+
+class PhotoListConfiguratorImplementation: PhotoListConfigurator{
+    func configure(photoListViewController: PhotoListViewController) {
+        
+    }
 }
