@@ -13,8 +13,13 @@ class PhotoListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.PhotoListTableView.dataSource = self
-        self.PhotoListTableView.delegate = self
+        
+        self.photoListTableView.dataSource = self
+        self.photoListTableView.delegate = self
+        self.photoListTableView.prefetchDataSource = self
+        
+        let cellNib = UINib(nibName: PhotoListTableViewCell.id, bundle: nil)
+        self.photoListTableView.register(cellNib, forCellReuseIdentifier: PhotoListTableViewCell.id)
         
         configurator.configure(photoListViewController: self)
         presenter.viewDidLoad()
@@ -26,7 +31,7 @@ class PhotoListViewController: UIViewController {
     }
     
     //MARK:- Interface Builder Links
-    @IBOutlet weak var PhotoListTableView: UITableView!
+    @IBOutlet weak var photoListTableView: UITableView!
     
     @IBAction func unWindToPhotoListView(_ unwindSegue : UIStoryboardSegue) {
         // Todo :
@@ -63,7 +68,6 @@ extension PhotoListViewController : UITableViewDataSourcePrefetching {
                     presenter.fetchPhotoList()
                 }
             }
-//            tableView.reloadData() // Todo : do or dont?
         }
     }
 }
@@ -84,7 +88,7 @@ extension PhotoListViewController : UITableViewDelegate {
 extension PhotoListViewController: PhotoListView {
     func reloadTableView(){
         DispatchQueue.main.async { [weak self] in
-            self?.PhotoListTableView.reloadData()
+            self?.photoListTableView.reloadData()
         }
     }
 }

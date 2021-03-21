@@ -41,6 +41,7 @@
 		25D8AA2026074335009E0BCE /* PhotoListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AA1F26074335009E0BCE /* PhotoListResponseDTO.swift */; };
 		25D8AA2D26074603009E0BCE /* NetworkRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AA2C26074603009E0BCE /* NetworkRequestFactory.swift */; };
 		25D8AA3226074D47009E0BCE /* PhotoListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AA3126074D47009E0BCE /* PhotoListRequestDTO.swift */; };
+		25D8AA3A2607997F009E0BCE /* PhotoListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25D8AA392607997E009E0BCE /* PhotoListTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		25D8AA1F26074335009E0BCE /* PhotoListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListResponseDTO.swift; sourceTree = "<group>"; };
 		25D8AA2C26074603009E0BCE /* NetworkRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.swift; sourceTree = "<group>"; };
 		25D8AA3126074D47009E0BCE /* PhotoListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListRequestDTO.swift; sourceTree = "<group>"; };
+		25D8AA392607997E009E0BCE /* PhotoListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoListTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,8 +217,9 @@
 				25D8A990260643B6009E0BCE /* PhotoListPresenter.swift */,
 				25D8A995260643C7009E0BCE /* PhotoListConfigurator.swift */,
 				25D8A99A260643DB009E0BCE /* PhotoListRouter.swift */,
-				25D8A99F26064400009E0BCE /* PhotoListTableViewCell.swift */,
 				25D8A93326064201009E0BCE /* PhotoListViewController.swift */,
+				25D8A99F26064400009E0BCE /* PhotoListTableViewCell.swift */,
+				25D8AA392607997E009E0BCE /* PhotoListTableViewCell.xib */,
 			);
 			path = PhotoListScene;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25D8AA3A2607997F009E0BCE /* PhotoListTableViewCell.xib in Resources */,
 				25D8A93C26064205009E0BCE /* LaunchScreen.storyboard in Resources */,
 				25D8A93926064205009E0BCE /* Assets.xcassets in Resources */,
 				25D8A93726064201009E0BCE /* Main.storyboard in Resources */,

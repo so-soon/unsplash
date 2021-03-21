@@ -87,25 +87,23 @@ class APIServiceImplementation: APIService {
             return
         }
         
-        DispatchQueue.global().async {
-            URLSession.shared.dataTask(with: url){ (data,response,error) in
-                if let _ = error {
-                    completion(.failure(.kDataTaskResponseError))
-                    return
-                }
-                
-                guard let _ = response as? HTTPURLResponse else {
-                    completion(.failure(.kStatusCodeError))
-                    return
-                }
-                
-                guard let data = data else {
-                    completion(.failure(.kReponseDataError))
-                    return
-                }
-                completion(.success(ImageResponseDTO(data: data)))
-            }.resume()
-        }
+        URLSession.shared.dataTask(with: url){ (data,response,error) in
+            if let _ = error {
+                completion(.failure(.kDataTaskResponseError))
+                return
+            }
+            
+            guard let _ = response as? HTTPURLResponse else {
+                completion(.failure(.kStatusCodeError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.kReponseDataError))
+                return
+            }
+            completion(.success(ImageResponseDTO(data: data)))
+        }.resume()
     }
     
     //MARK:- Private

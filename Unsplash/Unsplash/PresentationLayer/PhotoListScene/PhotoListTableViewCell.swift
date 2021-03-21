@@ -9,6 +9,7 @@ import UIKit
 
 class PhotoListTableViewCell: UITableViewCell {
     static let id = "PhotoListTableViewCell"
+    var url : String?
     
     //MARK:- Interface Builder Links
     @IBOutlet weak var photoImageView: UIImageView!
@@ -19,17 +20,28 @@ class PhotoListTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-    func setImage(_ imgData: Data,_ userName: String){
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.photoImageView.image = nil
+        self.userNameLabel.text = nil
+        self.url = nil
+    }
+    func setImage(_ imgData: Data,_ userName: String, _ url : String){
         DispatchQueue.main.async { [weak self] in
             let image = UIImage(data: imgData)
             self?.photoImageView.image = image
             self?.userNameLabel.text = userName
+            self?.url = url
+        }
+    }
+    
+    func setImage(_ imgData: AnyObject,_ userName: String, _ url : String){
+        DispatchQueue.main.async { [weak self] in
+            let image = imgData as! UIImage
+            self?.photoImageView.image = image
+            self?.userNameLabel.text = userName
+            self?.url = url
         }
     }
 

@@ -39,42 +39,8 @@
                                     <constraint firstAttribute="trailing" secondItem="DiB-oZ-Z5o" secondAttribute="trailing" constant="20" id="wyq-Ae-kVO"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GYd-uW-aNp" userLabel="PhotoList Table View">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GYd-uW-aNp" userLabel="PhotoList Table View">
                                 <rect key="frame" x="0.0" y="106" width="414" height="756"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="PhotoListTableViewCell" rowHeight="463" id="mbl-na-fLu" userLabel="PhotoList Table View Cell" customClass="PhotoListTableViewCell" customModule="Unsplash" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="463"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mbl-na-fLu" id="9Bu-dv-Ff6">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="463"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kON-FF-PiP" userLabel="Photo Image View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="463"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yc8-UQ-kOr" userLabel="User Name Label">
-                                                    <rect key="frame" x="20" y="436" width="374" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="yc8-UQ-kOr" firstAttribute="leading" secondItem="9Bu-dv-Ff6" secondAttribute="leadingMargin" id="AHA-AW-HQA"/>
-                                                <constraint firstItem="kON-FF-PiP" firstAttribute="leading" secondItem="9Bu-dv-Ff6" secondAttribute="leading" id="MBi-zG-bj3"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="yc8-UQ-kOr" secondAttribute="bottom" id="gj0-HE-ODU"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="yc8-UQ-kOr" secondAttribute="trailing" id="jaf-Qv-8oH"/>
-                                                <constraint firstAttribute="trailing" secondItem="kON-FF-PiP" secondAttribute="trailing" id="pDq-db-hOK"/>
-                                                <constraint firstItem="kON-FF-PiP" firstAttribute="top" secondItem="9Bu-dv-Ff6" secondAttribute="top" id="wbu-fj-5ev"/>
-                                                <constraint firstAttribute="bottom" secondItem="kON-FF-PiP" secondAttribute="bottom" id="yj7-sB-gNA"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="photoImageView" destination="kON-FF-PiP" id="4ry-lU-577"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -91,7 +57,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="qRg-xm-zFY"/>
                     <connections>
-                        <outlet property="PhotoListTableView" destination="GYd-uW-aNp" id="2n4-7H-2AZ"/>
+                        <outlet property="photoListTableView" destination="GYd-uW-aNp" id="2n4-7H-2AZ"/>
                         <segue destination="WAT-8n-Oh0" kind="show" identifier="ShowPhotoDetailSegue" id="2je-gU-6pj"/>
                     </connections>
                 </viewController>

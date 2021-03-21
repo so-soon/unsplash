@@ -57,12 +57,14 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
         let url = photoListData[row].imageURL
         let userName = photoListData[row].userName
         
+        if cell.url ?? "" == url {return}
+        
         fetchPhotoImageUseCase.execute(imageURL: url,
-                                       cached: {resultData in cell.setImage(resultData)},
+                                       cached: {resultData in cell.setImage(resultData,userName,url)},
                                        completion: {result in
                                         switch result{
                                         case .success(let imgData):
-                                            cell.setImage(imgData,userName)
+                                            cell.setImage(imgData,userName,url)
                                         case .failure(let error):
                                         // Todo : Error handling
                                             print(error.localizedDescription)
