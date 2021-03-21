@@ -8,6 +8,9 @@
 import Foundation
 
 struct PhotoModel {
+    let id: String
+    let userName : String
+    let imageURL : String
     let width: Int
     let height: Int
 }
