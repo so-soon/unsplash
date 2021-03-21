@@ -10,6 +10,7 @@ import Foundation
 //MARK:- Protocol
 protocol PhotoListView: class {
     // Todo :
+    func reloadTableView()
 }
 
 protocol PhotoListPresenter {
@@ -89,6 +90,7 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
             switch result {
             case .success(let photoList):
                 self?.addPhotoList(photoList)
+                self?.view?.reloadTableView()
             case .failure(let error):
                 self?.errorHandler(error)
             }

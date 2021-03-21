@@ -8,8 +8,8 @@
 import Foundation
 
 enum CacheError : Error {
-    case kCacheNotFound
-    case kKeyConversionException
+    case kCacheNotFoundError
+    case kKeyConversionError
 }
 
 protocol CacheService {
@@ -24,12 +24,12 @@ class CacheServiceImplementation {
             [weak self] in
             if let key = request.url.data(using: .utf8)?.base64EncodedString(){
                 guard let imageData = self?.cacheStorage.object(forKey: key as NSString) else{
-                    completion(.failure(.kCacheNotFound))
+                    completion(.failure(.kCacheNotFoundError))
                     return
                 }
                 completion(.success(ImageResponseDTO(data: imageData as Data)))
             }else{
-                completion(.failure(.kKeyConversionException))
+                completion(.failure(.kKeyConversionError))
             }
         }
     }

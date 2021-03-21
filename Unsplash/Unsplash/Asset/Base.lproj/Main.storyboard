@@ -91,6 +91,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="qRg-xm-zFY"/>
                     <connections>
+                        <outlet property="PhotoListTableView" destination="GYd-uW-aNp" id="2n4-7H-2AZ"/>
                         <segue destination="WAT-8n-Oh0" kind="show" identifier="ShowPhotoDetailSegue" id="2je-gU-6pj"/>
                     </connections>
                 </viewController>

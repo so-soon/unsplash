@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoListViewController: UIViewController,PhotoListView {
+class PhotoListViewController: UIViewController {
     var configurator = PhotoListConfiguratorImplementation()
     var presenter: PhotoListPresenter!
     
@@ -23,6 +23,7 @@ class PhotoListViewController: UIViewController,PhotoListView {
     }
     
     //MARK:- Interface Builder Links
+    @IBOutlet weak var PhotoListTableView: UITableView!
     
     @IBAction func unWindToPhotoListView(_ unwindSegue : UIStoryboardSegue) {
         // Todo :
@@ -77,4 +78,10 @@ extension PhotoListViewController : UITableViewDelegate {
     }
 }
 
-
+extension PhotoListViewController: PhotoListView {
+    func reloadTableView(){
+        DispatchQueue.main.async { [weak self] in
+            self?.PhotoListTableView.reloadData()
+        }
+    }
+}
