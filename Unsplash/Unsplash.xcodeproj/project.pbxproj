@@ -39,6 +39,8 @@
 		25D8AA0826073AA3009E0BCE /* PhotoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AA0726073AA3009E0BCE /* PhotoResponseDTO.swift */; };
 		25D8AA1B260741E9009E0BCE /* ImageResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AA1A260741E9009E0BCE /* ImageResponseDTO.swift */; };
 		25D8AA2026074335009E0BCE /* PhotoListResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AA1F26074335009E0BCE /* PhotoListResponseDTO.swift */; };
+		25D8AA2D26074603009E0BCE /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AA2C26074603009E0BCE /* RequestFactory.swift */; };
+		25D8AA3226074D47009E0BCE /* PhotoListRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AA3126074D47009E0BCE /* PhotoListRequestDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		25D8AA0726073AA3009E0BCE /* PhotoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoResponseDTO.swift; sourceTree = "<group>"; };
 		25D8AA1A260741E9009E0BCE /* ImageResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponseDTO.swift; sourceTree = "<group>"; };
 		25D8AA1F26074335009E0BCE /* PhotoListResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListResponseDTO.swift; sourceTree = "<group>"; };
+		25D8AA2C26074603009E0BCE /* RequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
+		25D8AA3126074D47009E0BCE /* PhotoListRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListRequestDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +282,7 @@
 		25D8A9BB26064525009E0BCE /* NetworkModule */ = {
 			isa = PBXGroup;
 			children = (
+				25D8AA2C26074603009E0BCE /* RequestFactory.swift */,
 			);
 			path = NetworkModule;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 			children = (
 				25D8A9C1260645AD009E0BCE /* SearchPhotoListRequestDTO.swift */,
 				25D8AA0226073A95009E0BCE /* ImageRequestDTO.swift */,
+				25D8AA3126074D47009E0BCE /* PhotoListRequestDTO.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -474,6 +480,7 @@
 				25D8A9BD26064539009E0BCE /* APIService.swift in Sources */,
 				25D8A991260643B6009E0BCE /* PhotoListPresenter.swift in Sources */,
 				25D8A9B726064508009E0BCE /* PhotoListRepository.swift in Sources */,
+				25D8AA3226074D47009E0BCE /* PhotoListRequestDTO.swift in Sources */,
 				25D8A93026064201009E0BCE /* AppDelegate.swift in Sources */,
 				25D8A96E260642BA009E0BCE /* PhotoDetailPresenter.swift in Sources */,
 				25D8A9E326064633009E0BCE /* SearchPhotoListUseCase.swift in Sources */,
@@ -490,6 +497,7 @@
 				25D8A996260643C7009E0BCE /* PhotoListConfigurator.swift in Sources */,
 				25D8A9DE26064622009E0BCE /* FetchPhotoImageUseCase.swift in Sources */,
 				25D8A9B2260644F8009E0BCE /* PhotoRepository.swift in Sources */,
+				25D8AA2D26074603009E0BCE /* RequestFactory.swift in Sources */,
 				25D8A99B260643DB009E0BCE /* PhotoListRouter.swift in Sources */,
 				25D8A93226064201009E0BCE /* SceneDelegate.swift in Sources */,
 				25D8A98626064313009E0BCE /* PhotoDetailRouter.swift in Sources */,

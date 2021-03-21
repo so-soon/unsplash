@@ -7,18 +7,27 @@
 
 import Foundation
 
+enum NetworkError : Error {
+    
+}
+
 protocol APIService {
-    func requestPhotoList(completion: @escaping (Result<PhotoListResponseDTO,Error>) -> Void)
+    func requestPhotoList(request: PhotoListRequestDTO,completion: @escaping (Result<PhotoListResponseDTO,Error>) -> Void)
     func requestPhotoList(request: SearchPhotoListRequestDTO, completion: @escaping (Result<SearchPhotoListResponseDTO,Error>) -> Void)
 }
 
 class APIServiceImplementation: APIService {
+    let baseURL = "https://api.unsplash.com"
+    let clientID = "CpqfOYCldalTto6DyStDUk14-WBpChlfM1gxSzD-UlQ"
+    let requestFactory = RequestFactoryImplementation()
+    
+    
     //MARK:- Default fetch photolist
-    func requestPhotoList(completion: @escaping (Result<PhotoListResponseDTO,Error>) -> Void){
+    func requestPhotoList(request: PhotoListRequestDTO,completion: @escaping (Result<PhotoListResponseDTO,Error>) -> Void){
         
     }
     
-    //MARK:- search fetch photolist
+    //MARK:- Search fetch photolist
     func requestPhotoList(request: SearchPhotoListRequestDTO, completion: @escaping (Result<SearchPhotoListResponseDTO,Error>) -> Void){
         
     }

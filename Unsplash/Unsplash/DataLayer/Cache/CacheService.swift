@@ -7,29 +7,29 @@
 
 import Foundation
 
-enum CacheErrorType : Error {
+enum CacheError : Error {
     case kCacheNotFound
     case kKeyConversionException
 }
 
 protocol CacheService {
-    func requestImage(request: ImageRequestDTO, completion: @escaping (Result<ImageResponseDTO,Error>) -> Void)
+    func requestImage(request: ImageRequestDTO, completion: @escaping (Result<ImageResponseDTO,CacheError>) -> Void)
 }
 
 class CacheServiceImplementation {
     private let cacheStorage = NSCache<NSString, NSData>()
     
-    func requestImage(request: ImageRequestDTO, completion: @escaping (Result<ImageResponseDTO,Error>) -> Void){
+    func requestImage(request: ImageRequestDTO, completion: @escaping (Result<ImageResponseDTO,CacheError>) -> Void){
         DispatchQueue.global().async {
             [weak self] in
             if let key = request.url.data(using: .utf8)?.base64EncodedString(){
                 guard let imageData = self?.cacheStorage.object(forKey: key as NSString) else{
-                    completion(.failure(CacheErrorType.kCacheNotFound))
+                    completion(.failure(.kCacheNotFound))
                     return
                 }
                 completion(.success(ImageResponseDTO(data: imageData as Data)))
             }else{
-                completion(.failure(CacheErrorType.kKeyConversionException))
+                completion(.failure(.kKeyConversionException))
             }
         }
     }
