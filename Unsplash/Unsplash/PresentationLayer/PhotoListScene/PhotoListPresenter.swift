@@ -9,6 +9,7 @@ import Foundation
 
 //MARK:- Protocol
 protocol PhotoListView: class {
+    // Todo :
 }
 
 protocol PhotoListPresenter {
@@ -48,15 +49,27 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     }
     
     func viewDidLoad(){
-        
+        fetchPhotoList()
     }
     
     func configure(cell : PhotoListTableViewCell, forRow row: Int){
-        
+        // Todo :
+        let url = photoListData[row].imageURL
+        fetchPhotoImageUseCase.execute(imageURL: url,
+                                       cached: {resultData in cell.setImage(resultData)},
+                                       completion: {result in
+                                        switch result{
+                                        case .success(let imgData):
+                                            cell.setImage(imgData)
+                                        case .failure(let error):
+                                            break
+                                        // Todo : Error handling
+                                        }
+                                       })
     }
     
     func numberOfRowsInSection() -> Int {
-        return 1
+        return photoListData.count
     }
     
     func photoRatioHeight(cellAt row :Int) -> Float {
@@ -64,18 +77,35 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     }
     
     func didSelect(cellAt row: Int) {
-        
+        // Todo :
     }
     
     func searchTextFieldEndEdit(with searchWord : String) {
-        
+        // Todo :
     }
     
     func fetchPhotoList(){
-        
+        fetchDefaultPhotoListUseCase.execute(){ [weak self] result in
+            switch result {
+            case .success(let photoList):
+                self?.addPhotoList(photoList)
+            case .failure(let error):
+                self?.errorHandler(error)
+            }
+        }
     }
     
     func flushPhotoList(){
-        
+        photoListData.removeAll()
+    }
+    
+    //MARK:- Private
+    
+    private func addPhotoList(_ photoList : [PhotoModel]) {
+        photoListData.append(contentsOf: photoList)
+    }
+    
+    private func errorHandler(_ error : Error) {
+        // Todo :
     }
 }

@@ -10,6 +10,9 @@ import UIKit
 class PhotoListTableViewCell: UITableViewCell {
     static let id = "PhotoListTableViewCell"
     
+    //MARK:- Interface Builder Links
+    @IBOutlet weak var photoImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +22,11 @@ class PhotoListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setImage(_ imgData: Data){
+        let image = UIImage(data: imgData)
+        photoImageView.image = image
     }
 
 }

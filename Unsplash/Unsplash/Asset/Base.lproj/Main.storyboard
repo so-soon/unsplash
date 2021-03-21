@@ -43,7 +43,7 @@
                                 <rect key="frame" x="0.0" y="106" width="414" height="756"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="PhotoListTableViewCell" rowHeight="463" id="mbl-na-fLu" userLabel="PhotoList Table View Cell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="PhotoListTableViewCell" rowHeight="463" id="mbl-na-fLu" userLabel="PhotoList Table View Cell" customClass="PhotoListTableViewCell" customModule="Unsplash" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="463"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mbl-na-fLu" id="9Bu-dv-Ff6">
@@ -70,6 +70,9 @@
                                                 <constraint firstAttribute="bottom" secondItem="kON-FF-PiP" secondAttribute="bottom" id="yj7-sB-gNA"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="photoImageView" destination="kON-FF-PiP" id="4ry-lU-577"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

@@ -8,9 +8,24 @@
 import Foundation
 
 protocol FetchDefaultPhotoListUseCase {
-    
+    func execute(completion: @escaping (Result<[PhotoModel],Error>) -> Void)
 }
 
 class FetchDefaultPhotoListUseCaseImplementation: FetchDefaultPhotoListUseCase {
+    private let repository : PhotoListRepository
     
+    init(repository: PhotoListRepository) {
+        self.repository = repository
+    }
+    
+    func execute(completion: @escaping (Result<[PhotoModel],Error>) -> Void){
+        repository.fetching(){result in
+            switch result{
+            case .success(let photoList):
+                completion(.success(photoList))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

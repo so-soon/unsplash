@@ -7,6 +7,12 @@
 
 import Foundation
 
-class PhotoListRepository {
-    
+protocol PhotoListRepository {
+    func fetching(completion: @escaping (Result<[PhotoModel],Error>) -> Void)
+}
+
+class PhotoListRepositoryImplementaiton: PhotoListRepository{
+    func fetching(completion: @escaping (Result<[PhotoModel],Error>) -> Void){
+        
+    }
 }
