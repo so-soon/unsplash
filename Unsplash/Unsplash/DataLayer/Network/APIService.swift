@@ -23,9 +23,9 @@ protocol APIService {
 }
 
 class APIServiceImplementation: APIService {
-    let baseURL = "https://api.unsplash.com"
-    let clientID = "CpqfOYCldalTto6DyStDUk14-WBpChlfM1gxSzD-UlQ"
-    let requestFactory = NetworkRequestFactoryImplementation()
+    private let baseURL = "https://api.unsplash.com"
+    private let clientID = "CpqfOYCldalTto6DyStDUk14-WBpChlfM1gxSzD-UlQ"
+    private let requestFactory = NetworkRequestFactoryImplementation()
     
     
     //MARK:- Default fetch photolist
