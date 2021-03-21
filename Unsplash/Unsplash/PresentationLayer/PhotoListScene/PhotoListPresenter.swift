@@ -55,13 +55,14 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     
     func configure(cell : PhotoListTableViewCell, forRow row: Int){
         let url = photoListData[row].imageURL
+        let userName = photoListData[row].userName
         
         fetchPhotoImageUseCase.execute(imageURL: url,
                                        cached: {resultData in cell.setImage(resultData)},
                                        completion: {result in
                                         switch result{
                                         case .success(let imgData):
-                                            cell.setImage(imgData)
+                                            cell.setImage(imgData,userName)
                                         case .failure(let error):
                                         // Todo : Error handling
                                             print(error.localizedDescription)

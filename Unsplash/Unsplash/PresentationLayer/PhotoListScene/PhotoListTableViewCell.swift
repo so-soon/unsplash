@@ -12,6 +12,7 @@ class PhotoListTableViewCell: UITableViewCell {
     
     //MARK:- Interface Builder Links
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,10 +25,11 @@ class PhotoListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setImage(_ imgData: Data){
+    func setImage(_ imgData: Data,_ userName: String){
         DispatchQueue.main.async { [weak self] in
             let image = UIImage(data: imgData)
             self?.photoImageView.image = image
+            self?.userNameLabel.text = userName
         }
     }
 
