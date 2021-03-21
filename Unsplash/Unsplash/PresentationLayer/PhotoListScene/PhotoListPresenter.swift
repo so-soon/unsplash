@@ -53,8 +53,8 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     }
     
     func configure(cell : PhotoListTableViewCell, forRow row: Int){
-        // Todo :
         let url = photoListData[row].imageURL
+        
         fetchPhotoImageUseCase.execute(imageURL: url,
                                        cached: {resultData in cell.setImage(resultData)},
                                        completion: {result in
@@ -62,8 +62,8 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
                                         case .success(let imgData):
                                             cell.setImage(imgData)
                                         case .failure(let error):
-                                            break
                                         // Todo : Error handling
+                                            print(error.localizedDescription)
                                         }
                                        })
     }
@@ -107,5 +107,6 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     
     private func errorHandler(_ error : Error) {
         // Todo :
+        print(error.localizedDescription)
     }
 }

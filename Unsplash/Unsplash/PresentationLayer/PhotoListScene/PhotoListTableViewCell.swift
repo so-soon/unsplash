@@ -25,8 +25,10 @@ class PhotoListTableViewCell: UITableViewCell {
     }
     
     func setImage(_ imgData: Data){
-        let image = UIImage(data: imgData)
-        photoImageView.image = image
+        DispatchQueue.main.async { [weak self] in
+            let image = UIImage(data: imgData)
+            self?.photoImageView.image = image
+        }
     }
 
 }
