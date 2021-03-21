@@ -9,12 +9,20 @@ import Foundation
 
 //MARK:- Protocol
 protocol PhotoListView: class {
-    
 }
 
 protocol PhotoListPresenter {
     func viewDidLoad()
     func configure(cell : PhotoListTableViewCell, forRow row: Int)
+    
+    func numberOfRowsInSection() -> Int
+    func photoRatioHeight(cellAt row :Int) -> Float
+    
+    func didSelect(cellAt row: Int)
+    func searchTextFieldEndEdit(with searchWord : String)
+    
+    func fetchPhotoList()
+    func flushPhotoList()
 }
 
 //MARK:- Implementation
@@ -24,6 +32,8 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     fileprivate let fetchPhotoImageUseCase : FetchPhotoImageUseCase
     fileprivate let searchPhotoListUseCase : SearchPhotoListUseCase
     let router : PhotoListRouter
+    
+    fileprivate var photoListData : [PhotoModel] = []
     
     init(view: PhotoListView,
          fetchDefaultPhotoListUseCase : FetchDefaultPhotoListUseCase,
@@ -42,6 +52,30 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     }
     
     func configure(cell : PhotoListTableViewCell, forRow row: Int){
+        
+    }
+    
+    func numberOfRowsInSection() -> Int {
+        return 1
+    }
+    
+    func photoRatioHeight(cellAt row :Int) -> Float {
+        return Float(photoListData[row].height / photoListData[row].width)
+    }
+    
+    func didSelect(cellAt row: Int) {
+        
+    }
+    
+    func searchTextFieldEndEdit(with searchWord : String) {
+        
+    }
+    
+    func fetchPhotoList(){
+        
+    }
+    
+    func flushPhotoList(){
         
     }
 }

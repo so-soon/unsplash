@@ -8,7 +8,8 @@
 import UIKit
 
 class PhotoListTableViewCell: UITableViewCell {
-
+    static let id = "PhotoListTableViewCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

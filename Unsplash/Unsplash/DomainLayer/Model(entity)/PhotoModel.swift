@@ -8,5 +8,6 @@
 import Foundation
 
 struct PhotoModel {
-    
+    let width: Int
+    let height: Int
 }

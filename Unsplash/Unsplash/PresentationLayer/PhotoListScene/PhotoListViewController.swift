@@ -18,10 +18,63 @@ class PhotoListViewController: UIViewController,PhotoListView {
         presenter.viewDidLoad()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+    
     //MARK:- Interface Builder Links
     
     @IBAction func unWindToPhotoListView(_ unwindSegue : UIStoryboardSegue) {
-        
+        // Todo :
+    }
+    
+    @IBAction func searchTextFieldEndEdit(_ sender: UITextField) {
+        presenter.searchTextFieldEndEdit(with: sender.text.orEmpty())
     }
 }
+
+extension PhotoListViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.numberOfRowsInSection()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: PhotoListTableViewCell.id, for: indexPath) as! PhotoListTableViewCell
+        
+        presenter.configure(cell: cell, forRow: indexPath.row)
+        
+        return cell
+    }
+}
+
+extension PhotoListViewController : UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        let photoDataCount = presenter.numberOfRowsInSection()
+        
+        if photoDataCount == 0 {
+            return
+        }else{
+            for indexPath in indexPaths {
+                if photoDataCount == (indexPath.row + 1) {
+                    presenter.fetchPhotoList()
+                }
+            }
+//            tableView.reloadData() // Todo : do or dont?
+        }
+    }
+}
+
+extension PhotoListViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.didSelect(cellAt: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let width = UIScreen.main.bounds.width
+        let height = CGFloat(presenter.photoRatioHeight(cellAt: indexPath.row)) * width
+        
+        return height
+    }
+}
+
 
