@@ -5,7 +5,7 @@
 //  Created by Randy on 2021/03/20.
 //
 
-import Foundation
+import UIKit
 
 protocol PhotoListRouter {
     
