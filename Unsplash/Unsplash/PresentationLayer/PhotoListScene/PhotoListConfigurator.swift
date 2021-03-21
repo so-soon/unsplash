@@ -15,12 +15,10 @@ class PhotoListConfiguratorImplementation: PhotoListConfigurator{
     func configure(photoListViewController: PhotoListViewController) {
         // Todo : add configure Domain,DataLayer
         let apiService = APIServiceImplementation()
-        let cacheService = CacheServiceImplementation()
         
         // Todo : impl usecase's initializer
         let photoListRepository = PhotoListRepositoryImplementaiton(apiService: apiService)
-        let photoRepository = PhotoRepositoryImplementation(apiService: apiService,
-                                                            cacheService: cacheService)
+        let photoRepository = PhotoRepositoryImplementation(apiService: apiService)
         
         let fetchPhotoListUseCase = FetchDefaultPhotoListUseCaseImplementation(repository: photoListRepository)
         let fetchPhotoImageUsecase = FetchPhotoImageUseCaseImplementation(repository: photoRepository)

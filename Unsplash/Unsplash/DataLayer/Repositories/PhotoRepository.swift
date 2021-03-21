@@ -15,12 +15,9 @@ protocol PhotoRepository {
 
 class PhotoRepositoryImplementation: PhotoRepository {
     let apiService : APIService
-    let cacheService : CacheService
     
-    init(apiService : APIService,
-         cacheService : CacheService) {
+    init(apiService : APIService) {
         self.apiService = apiService
-        self.cacheService = cacheService
     }
     
     func fetching(imageURL: String,
@@ -29,7 +26,7 @@ class PhotoRepositoryImplementation: PhotoRepository {
         let request = ImageRequestDTO(url: imageURL)
         
         DispatchQueue.global().async {[weak self] in
-            self?.cacheService.requestImage(request: request){[weak self] result in
+            CacheServiceImplementation.shared.requestImage(request: request){[weak self] result in
                 switch result {
                 case .success(let cacheData):
                     cached(cacheData)
@@ -37,7 +34,7 @@ class PhotoRepositoryImplementation: PhotoRepository {
                     self?.apiService.requestImage(request: request){result in
                         switch result {
                         case .success(let responseDTO):
-                            _ = self?.cacheService.cachingImage(key: request.url, data: responseDTO.data as AnyObject)
+                            _ = CacheServiceImplementation.shared.cachingImage(key: request.url, data: responseDTO.data as AnyObject)
                             completion(.success(responseDTO.data))
                         case .failure(let error):
                             completion(.failure(error))

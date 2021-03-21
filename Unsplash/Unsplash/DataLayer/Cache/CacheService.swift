@@ -18,6 +18,8 @@ protocol CacheService {
 }
 
 class CacheServiceImplementation: CacheService{
+    static let shared : CacheServiceImplementation = CacheServiceImplementation()
+    
     private let cacheStorage = NSCache<NSString, AnyObject>()
     
     func requestImage(request: ImageRequestDTO, completion: @escaping (Result<AnyObject,CacheError>) -> Void){
