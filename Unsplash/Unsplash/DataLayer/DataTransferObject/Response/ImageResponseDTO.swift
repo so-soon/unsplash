@@ -10,3 +10,9 @@ import Foundation
 struct ImageResponseDTO {
     let data : Data
 }
+
+extension ImageResponseDTO {
+    func toDomain() -> Data {
+        return self.data
+    }
+}

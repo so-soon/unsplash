@@ -22,3 +22,9 @@ struct PhotoReponseURLsDTO: Decodable {
 struct PhotoReponseUserDTO: Decodable {
     let name: String?
 }
+
+extension PhotoResponseDTO {
+    func toDomain() -> PhotoModel {
+        return PhotoModel(id: self.id, userName: self.user.name ?? "", imageURL: self.urls.regular ?? "", width: self.width, height: self.height)
+    }
+}
