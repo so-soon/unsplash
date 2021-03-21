@@ -12,6 +12,8 @@ enum NetworkError : Error {
     case kDataTaskResponseError
     case kStatusCodeError
     case kReponseDataError
+    case kJSONDecodeError
+    case kURLConversionError
 }
 
 protocol APIService {
@@ -62,7 +64,7 @@ class APIServiceImplementation: APIService {
                 }
                 
                 guard let responseDTO : PhotoListResponseDTO = self?.decodeJSON(data: data) else {
-                    completion(.failure(.kReponseDataError))
+                    completion(.failure(.kJSONDecodeError))
                     return
                 }
                 
@@ -80,7 +82,30 @@ class APIServiceImplementation: APIService {
     
     //MARK:- fetch image
     func requestImage(request: ImageRequestDTO, completion: @escaping (Result<ImageResponseDTO,NetworkError>)->Void){
+        guard let url = URL(string: request.url) else {
+            completion(.failure(.kURLConversionError))
+            return
+        }
         
+        DispatchQueue.global().async {
+            URLSession.shared.dataTask(with: url){ (data,response,error) in
+                guard let _ = error else {
+                    completion(.failure(.kDataTaskResponseError))
+                    return
+                }
+                
+                guard let _ = response as? HTTPURLResponse else {
+                    completion(.failure(.kStatusCodeError))
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(.failure(.kReponseDataError))
+                    return
+                }
+                completion(.success(ImageResponseDTO(data: data)))
+            }
+        }
     }
     
     //MARK:- Private

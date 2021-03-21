@@ -17,6 +17,6 @@ class PhotoRepositoryImplementation: PhotoRepository {
     func fetching(imageURL: String,
                   cached: @escaping (Data) -> Void,
                   completion: @escaping (Result<Data,Error>) -> Void){
-        // Todo : save cache image
+        // Todo : check, save cache image
     }
 }
