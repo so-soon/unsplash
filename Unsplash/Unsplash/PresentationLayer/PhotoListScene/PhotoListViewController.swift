@@ -13,9 +13,12 @@ class PhotoListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.PhotoListTableView.dataSource = self
+        self.PhotoListTableView.delegate = self
         
         configurator.configure(photoListViewController: self)
         presenter.viewDidLoad()
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

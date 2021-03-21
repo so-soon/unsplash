@@ -48,7 +48,7 @@ class APIServiceImplementation: APIService {
         
         DispatchQueue.global().async {
             URLSession.shared.dataTask(with: request){[weak self] (data,response,error) in
-                guard let _ = error else {
+                if let _ = error {
                     completion(.failure(.kDataTaskResponseError))
                     return
                 }
@@ -69,7 +69,7 @@ class APIServiceImplementation: APIService {
                 }
                 
                 completion(.success(responseDTO))
-            }
+            }.resume()
         }
         
         
@@ -89,7 +89,7 @@ class APIServiceImplementation: APIService {
         
         DispatchQueue.global().async {
             URLSession.shared.dataTask(with: url){ (data,response,error) in
-                guard let _ = error else {
+                if let _ = error {
                     completion(.failure(.kDataTaskResponseError))
                     return
                 }
@@ -104,7 +104,7 @@ class APIServiceImplementation: APIService {
                     return
                 }
                 completion(.success(ImageResponseDTO(data: data)))
-            }
+            }.resume()
         }
     }
     
@@ -112,8 +112,8 @@ class APIServiceImplementation: APIService {
     
     private func decodeJSON<T: Decodable>(data: Data) -> T? {
         do{
-            let serialzedData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-            let jsonData = try JSONDecoder().decode(T.self, from: serialzedData)
+//            let serialzedData = try JSONSerialization.data(withJSONObject: data)
+            let jsonData = try JSONDecoder().decode(T.self, from: data)
             
             return jsonData
         }catch{
