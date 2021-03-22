@@ -12,6 +12,11 @@ class PhotoDetailViewController: UIViewController {
     var presenter: PhotoDetailPresenter!
     var delegate : PhotoDetailPresenterDelegate?
     
+    var cellFocusOffset : Int?
+    
+    private var collectionViewWidth : CGFloat = 0
+    private var collectionViewHeight : CGFloat = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,10 +26,19 @@ class PhotoDetailViewController: UIViewController {
         
         configurator.configure(photoDetailViewController: self)
         
-        
+        self.setCellFocusOffset()
     }
     //MARK:- Interface Builder Links
     @IBOutlet weak var photoCollectionView: UICollectionView!
+    
+    //MARK:- Private
+    
+    private func setCellFocusOffset() {
+        if let cellFocusOffset = self.cellFocusOffset {
+            let position = CGFloat(cellFocusOffset) * self.collectionViewWidth
+            self.photoCollectionView.setContentOffset(CGPoint(x: position, y: 0), animated: false)
+        }
+    }
 
 }
 
@@ -69,13 +83,16 @@ extension PhotoDetailViewController: UICollectionViewDelegateFlowLayout {
         let width = collectionView.frame.size.width
         let height = collectionView.frame.size.height
         
+        self.collectionViewWidth = width
+        self.collectionViewHeight = height
+
         return CGSize(width: width, height: height)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }

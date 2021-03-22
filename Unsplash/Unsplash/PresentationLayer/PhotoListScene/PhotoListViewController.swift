@@ -13,17 +13,15 @@ class PhotoListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.photoListTableView.dataSource = self
-        self.photoListTableView.delegate = self
-        self.photoListTableView.prefetchDataSource = self
+        configurator.configure(photoListViewController: self)
+        presenter.viewDidLoad()
         
         let cellNib = UINib(nibName: PhotoListTableViewCell.id, bundle: nil)
         self.photoListTableView.register(cellNib, forCellReuseIdentifier: PhotoListTableViewCell.id)
         
-        configurator.configure(photoListViewController: self)
-        presenter.viewDidLoad()
-        
+        self.photoListTableView.dataSource = self
+        self.photoListTableView.delegate = self
+        self.photoListTableView.prefetchDataSource = self
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,7 +47,6 @@ extension PhotoListViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoListTableViewCell.id, for: indexPath) as! PhotoListTableViewCell
-        
         presenter.configure(cell: cell, forRow: indexPath.row)
         
         return cell

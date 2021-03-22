@@ -79,12 +79,13 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     }
     
     func photoRatioHeight(cellAt row :Int) -> Float {
-        return Float(photoListData[row].height / photoListData[row].width)
+        return Float(photoListData[row].height) / Float(photoListData[row].width)
     }
     
     func didSelect(cellAt row: Int) {
         router.presentDetailsView(delegate: self,
-                                  photoListData: self.photoListData)
+                                  photoListData: self.photoListData,
+                                  at: row)
     }
     
     func searchTextFieldEndEdit(with searchWord : String) {
