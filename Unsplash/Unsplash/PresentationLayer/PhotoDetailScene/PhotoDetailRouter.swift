@@ -7,6 +7,9 @@
 
 import UIKit
 
-class PhotoDetailRouter {
+protocol PhotoDetailRouter {
+    
+}
+class PhotoDetailRouterImplementation: PhotoDetailRouter {
     
 }

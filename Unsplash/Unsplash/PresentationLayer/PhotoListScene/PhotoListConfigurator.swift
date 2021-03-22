@@ -14,7 +14,7 @@ protocol PhotoListConfigurator {
 class PhotoListConfiguratorImplementation: PhotoListConfigurator{
     func configure(photoListViewController: PhotoListViewController) {
         // Todo : add configure Domain,DataLayer
-        let apiService = APIServiceImplementation()
+        let apiService = APIServiceImplementation.shared
         let cacheService = CacheServiceImplementation.shared
         
         // Todo : impl usecase's initializer
@@ -26,7 +26,7 @@ class PhotoListConfiguratorImplementation: PhotoListConfigurator{
         let fetchPhotoImageUsecase = FetchPhotoImageUseCaseImplementation(repository: photoRepository)
         let searchPhotoListUseCase = SearchPhotoListUseCaseImplementation()
         
-        let router = PhotoListRouterImplementation()
+        let router = PhotoListRouterImplementation(photoListViewController: photoListViewController)
         
         let presenter = PhotoListPresenterImplementation(
             view: photoListViewController,

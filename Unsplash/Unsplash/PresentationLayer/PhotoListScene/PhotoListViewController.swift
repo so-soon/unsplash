@@ -27,7 +27,7 @@ class PhotoListViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        presenter.router.perpare(for: segue, sender: sender)
     }
     
     //MARK:- Interface Builder Links

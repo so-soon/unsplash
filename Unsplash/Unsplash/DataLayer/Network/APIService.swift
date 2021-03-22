@@ -23,6 +23,7 @@ protocol APIService {
 }
 
 class APIServiceImplementation: APIService {
+    static let shared = APIServiceImplementation()
     private let baseURL = "https://api.unsplash.com"
     private let clientID = "CpqfOYCldalTto6DyStDUk14-WBpChlfM1gxSzD-UlQ"
     private let requestFactory = NetworkRequestFactoryImplementation()

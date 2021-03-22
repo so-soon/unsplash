@@ -15,6 +15,7 @@ protocol PhotoListView: class {
 }
 
 protocol PhotoListPresenter {
+    var router : PhotoListRouter { get }
     func viewDidLoad()
     func configure(cell : PhotoListTableViewCell, forRow row: Int)
     
@@ -34,7 +35,7 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     fileprivate let fetchDefaultPhotoListUseCase : FetchDefaultPhotoListUseCase
     fileprivate let fetchPhotoImageUseCase : FetchPhotoImageUseCase
     fileprivate let searchPhotoListUseCase : SearchPhotoListUseCase
-    let router : PhotoListRouter
+    var router : PhotoListRouter
     
     fileprivate var photoListData : [PhotoModel] = []
     
@@ -82,7 +83,8 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     }
     
     func didSelect(cellAt row: Int) {
-        // Todo :
+        router.presentDetailsView(delegate: self,
+                                  photoListData: self.photoListData)
     }
     
     func searchTextFieldEndEdit(with searchWord : String) {
@@ -119,8 +121,12 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
 }
 
 extension PhotoListPresenterImplementation: PhotoDetailPresenterDelegate {
-    func fetchPhotoListFromDetailPresetner(atRow row : Int) {
+    func fetchPhotoListFromDetailPresetner(at row : Int)  -> [PhotoModel] {
         fetchPhotoList()
+        return self.photoListData
+    }
+    
+    func movePhotoFocus(to row: Int) {
         self.view?.moveSrollFocus(at: row)
     }
 }

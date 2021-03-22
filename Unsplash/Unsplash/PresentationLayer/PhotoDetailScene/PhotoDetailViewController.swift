@@ -8,22 +8,83 @@
 import UIKit
 
 class PhotoDetailViewController: UIViewController {
-
+    var configurator: PhotoDetailConfigurator!
+    var presenter: PhotoDetailPresenter!
+    var delegate : PhotoDetailPresenterDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.photoCollectionView.dataSource = self
+        self.photoCollectionView.delegate = self
+        self.photoCollectionView.prefetchDataSource = self
+        
+        configurator.configure(photoDetailViewController: self)
+        
+        
+    }
+    //MARK:- Interface Builder Links
+    @IBOutlet weak var photoCollectionView: UICollectionView!
 
-        // Do any additional setup after loading the view.
+}
+
+extension PhotoDetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return presenter.numberOfRowsInSection()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: PhotoDetailCollectionViewCell.id, for: indexPath) as! PhotoDetailCollectionViewCell
+        
+        presenter.configure(cell: cell, rowRow: indexPath.row)
+        
+        return cell
     }
-    */
+}
 
+extension PhotoDetailViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        presenter.changePhotoFocus(to: indexPath.row)
+    }
+}
+
+extension PhotoDetailViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        let photoDataCount = presenter.numberOfRowsInSection()
+        
+        if photoDataCount == 0 {
+            return
+        }else{
+            for indexPath in indexPaths{
+                if photoDataCount == (indexPath.row + 3) {
+                    presenter.cellReachEndIndex(at: indexPath.row)
+                }
+            }
+        }
+    }
+}
+
+extension PhotoDetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.size.width
+        let height = collectionView.frame.size.height
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+}
+
+extension PhotoDetailViewController : PhotoDetailView {
+    func reloadCollectionView(){
+        DispatchQueue.main.async { [weak self] in
+            self?.photoCollectionView.reloadData()
+        }
+    }
 }
