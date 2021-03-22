@@ -8,5 +8,7 @@
 import UIKit
 
 class PhotoDetailCollectionViewCell: UICollectionViewCell {
+    static let id = "PhotoDetailCollectionViewCell"
+    
     
 }

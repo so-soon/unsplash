@@ -7,6 +7,13 @@
 
 import Foundation
 
-class PhotoDetailConfigurator {
+protocol PhotoDetailConfigurator {
+    func configure(photoDetailViewController: PhotoDetailViewController)
+}
+
+class PhotoDetailConfiguratorImplementation: PhotoDetailConfigurator {
     
+    func configure(photoDetailViewController: PhotoDetailViewController){
+        
+    }
 }

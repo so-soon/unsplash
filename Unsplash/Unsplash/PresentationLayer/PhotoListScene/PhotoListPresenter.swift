@@ -11,6 +11,7 @@ import Foundation
 protocol PhotoListView: class {
     // Todo :
     func reloadTableView()
+    func moveSrollFocus(at row: Int)
 }
 
 protocol PhotoListPresenter {
@@ -113,5 +114,13 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     private func errorHandler(_ error : Error) {
         // Todo :
         print(error.localizedDescription)
+    }
+    
+}
+
+extension PhotoListPresenterImplementation: PhotoDetailPresenterDelegate {
+    func fetchPhotoListFromDetailPresetner(atRow row : Int) {
+        fetchPhotoList()
+        self.view?.moveSrollFocus(at: row)
     }
 }

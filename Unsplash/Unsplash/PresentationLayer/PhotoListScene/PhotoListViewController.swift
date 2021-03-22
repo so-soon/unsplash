@@ -91,4 +91,9 @@ extension PhotoListViewController: PhotoListView {
             self?.photoListTableView.reloadData()
         }
     }
+    
+    func moveSrollFocus(at row: Int){
+        let indexPath = IndexPath(row: row, section: 0)
+        self.photoListTableView.scrollToRow(at: indexPath, at: .middle, animated: false)
+    }
 }
