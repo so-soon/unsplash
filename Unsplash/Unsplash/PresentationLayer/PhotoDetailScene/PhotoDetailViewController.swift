@@ -26,6 +26,10 @@ class PhotoDetailViewController: UIViewController {
         
         configurator.configure(photoDetailViewController: self)
         
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
         self.setCellFocusOffset()
     }
     //MARK:- Interface Builder Links
@@ -35,7 +39,7 @@ class PhotoDetailViewController: UIViewController {
     
     private func setCellFocusOffset() {
         if let cellFocusOffset = self.cellFocusOffset {
-            let position = CGFloat(cellFocusOffset) * self.collectionViewWidth
+            let position = CGFloat(cellFocusOffset) * UIScreen.main.bounds.width
             self.photoCollectionView.setContentOffset(CGPoint(x: position, y: 0), animated: false)
         }
     }
