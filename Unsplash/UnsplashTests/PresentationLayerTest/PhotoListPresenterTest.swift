@@ -6,27 +6,43 @@
 //
 
 import XCTest
+@testable import Unsplash
 
 class PhotoListPresenterTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    let fetchDefaultPhotoListUseCaseMock = FetchDefaultPhotoListUseCaseMock()
+    let fetchPhotoImageUseCaseMock = FetchPhotoImageUseCaseMock()
+    let searchPhotoListUseCaseMock = SearchPhotoListUseCaseMock()
+    let routerMock = PhotoListRouterMock()
+    let viewMock = PhotoListViewMock()
+    
+    let photoListCreator = PhotoListMockCreator()
+    
+    var presenter: PhotoListPresenterImplementation!
+    
+    override func setUp() {
+        presenter = PhotoListPresenterImplementation(view: viewMock, fetchDefaultPhotoListUseCase: fetchDefaultPhotoListUseCaseMock, fetchPhotoImageUseCase: fetchPhotoImageUseCaseMock, searchPhotoListUseCase: searchPhotoListUseCaseMock, router: routerMock)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func test_WhenViewDidLoad_ThenLoadData(){
+        //Given
+        let expectedData = photoListCreator.createMockData()
+        fetchDefaultPhotoListUseCaseMock.setMockData(expectedData)
+        
+        //When
+        presenter.viewDidLoad()
+        
+        //Then
+        XCTAssertEqual(expectedData, presenter.photoListData)
     }
+    
+    
+    override func tearDown() {
+        fetchPhotoImageUseCaseMock.reset()
+        fetchDefaultPhotoListUseCaseMock.reset()
+        searchPhotoListUseCaseMock.reset()
+        routerMock.reset()
+        viewMock.reset()
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        presenter = nil
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

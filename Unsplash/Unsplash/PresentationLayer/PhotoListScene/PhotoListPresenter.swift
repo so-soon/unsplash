@@ -40,7 +40,7 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     var router : PhotoListRouter
     
     
-    fileprivate var photoListData : [PhotoModel] = []
+    var photoListData : [PhotoModel] = []
 
     init(view: PhotoListView,
          fetchDefaultPhotoListUseCase : FetchDefaultPhotoListUseCase,
