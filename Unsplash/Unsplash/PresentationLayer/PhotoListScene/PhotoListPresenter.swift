@@ -25,9 +25,9 @@ protocol PhotoListPresenter {
     func photoRatioHeight(cellAt row :Int) -> Float
     
     func didSelect(cellAt row: Int)
-    func searchTextFieldEndEdit(with searchWord : String)
+    func searchTextFieldEndEdit(with searchWord : String?)
     
-    func fetchPhotoList()
+    func fetchPhotoList(searchWord: String?)
     func flushPhotoList()
 }
 
@@ -40,7 +40,7 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     var router : PhotoListRouter
     
     fileprivate var photoListData : [PhotoModel] = []
-    
+
     init(view: PhotoListView,
          fetchDefaultPhotoListUseCase : FetchDefaultPhotoListUseCase,
          fetchPhotoImageUseCase : FetchPhotoImageUseCase,
@@ -54,10 +54,12 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     }
     
     func viewDidLoad(){
-        fetchPhotoList()
+        fetchPhotoList(searchWord: nil)
     }
     
     func configure(cell : PhotoListTableViewCell, forRow row: Int){
+        if row >= photoListData.count {return}
+        
         let url = photoListData[row].imageURL
         let userName = photoListData[row].userName
         
@@ -81,6 +83,7 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     }
     
     func photoRatioHeight(cellAt row :Int) -> Float {
+        if row >= photoListData.count {return 0}
         return Float(photoListData[row].height) / Float(photoListData[row].width)
     }
     
@@ -90,20 +93,37 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
                                   at: row)
     }
     
-    func searchTextFieldEndEdit(with searchWord : String) {
+    func searchTextFieldEndEdit(with searchWord : String?) {
         // Todo :
+        guard let searchWord = searchWord else {return}
+        flushPhotoList()
+        fetchPhotoList(searchWord: searchWord)
+        self.view?.moveSrollFocus(at: 0)
     }
     
-    func fetchPhotoList(){
-        fetchDefaultPhotoListUseCase.execute(){ [weak self] result in
-            switch result {
-            case .success(let photoList):
-                self?.addPhotoList(photoList)
-                self?.view?.reloadTableView()
-            case .failure(let error):
-                self?.errorHandler(error)
+    func fetchPhotoList(searchWord: String?){
+        if searchWord == nil{
+            fetchDefaultPhotoListUseCase.execute(){ [weak self] result in
+                switch result {
+                case .success(let photoList):
+                    self?.addPhotoList(photoList)
+                    self?.view?.reloadTableView()
+                case .failure(let error):
+                    self?.errorHandler(error)
+                }
+            }
+        }else{
+            searchPhotoListUseCase.execute(searchWord: searchWord.orEmpty()){ [weak self] result in
+                switch result {
+                case .success(let photoList):
+                    self?.addPhotoList(photoList)
+                    self?.view?.reloadTableView()
+                case .failure(let error):
+                    self?.errorHandler(error)
+                }
             }
         }
+        
     }
     
     func flushPhotoList(){
@@ -125,7 +145,7 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
 
 extension PhotoListPresenterImplementation: PhotoDetailPresenterDelegate {
     func fetchPhotoListFromDetailPresetner(at row : Int)  -> [PhotoModel] {
-        fetchPhotoList()
+        fetchPhotoList(searchWord: nil)
         return self.photoListData
     }
     

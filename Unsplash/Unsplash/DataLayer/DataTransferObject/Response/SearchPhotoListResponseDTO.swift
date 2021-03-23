@@ -9,8 +9,9 @@ import Foundation
 
 struct SearchPhotoListResponseDTO : Decodable {
     let total: Int
-    let totalPages: Int
+    let total_pages: Int
     let results: [PhotoResponseDTO]
+    
 }
 
 

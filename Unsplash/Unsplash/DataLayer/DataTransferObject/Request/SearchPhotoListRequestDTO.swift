@@ -8,5 +8,6 @@
 import Foundation
 
 struct SearchPhotoListRequestDTO {
-    let query: String?
+    let searchWord: String
+    let page: Int
 }

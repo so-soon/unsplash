@@ -36,7 +36,7 @@ class APIServiceImplementation: APIService {
         
         query["page"] = String(request.page)
         
-        guard let request = requestFactory.produceRequest(baseURL: baseURL,
+        guard let request = requestFactory.producePhotoListRequest(baseURL: baseURL,
                                                     targetURL: targetURL,
                                                     clientID: clientID,
                                                     method: .get,
@@ -78,7 +78,48 @@ class APIServiceImplementation: APIService {
     
     //MARK:- Search fetch photolist
     func requestPhotoList(request: SearchPhotoListRequestDTO, completion: @escaping (Result<SearchPhotoListResponseDTO,NetworkError>) -> Void){
-        // Todo :
+        let targetURL = "/search/photos"
+        var query : [String:String] = [:]
+        
+        query["page"] = String(request.page)
+        query["query"] = String(request.searchWord)
+        
+        guard let request = requestFactory.producePhotoListRequest(baseURL: baseURL,
+                                                    targetURL: targetURL,
+                                                    clientID: clientID,
+                                                    method: .get,
+                                                    query: query,
+                                                    body: nil)
+        else {
+            completion(.failure(.kProduceRequestError))
+            return
+        }
+        
+        DispatchQueue.global().async {
+            URLSession.shared.dataTask(with: request){[weak self] (data,response,error) in
+                if let _ = error {
+                    completion(.failure(.kDataTaskResponseError))
+                    return
+                }
+                
+                guard let _ = response as? HTTPURLResponse else {
+                    completion(.failure(.kStatusCodeError))
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(.failure(.kReponseDataError))
+                    return
+                }
+                
+                guard let responseDTO : SearchPhotoListResponseDTO = self?.decodeJSON(data: data) else {
+                    completion(.failure(.kJSONDecodeError))
+                    return
+                }
+                
+                completion(.success(responseDTO))
+            }.resume()
+        }
     }
     
     //MARK:- fetch image
@@ -112,7 +153,6 @@ class APIServiceImplementation: APIService {
     private func decodeJSON<T: Decodable>(data: Data) -> T? {
         do{
             let jsonData = try JSONDecoder().decode(T.self, from: data)
-            
             return jsonData
         }catch{
             return nil

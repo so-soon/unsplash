@@ -16,11 +16,12 @@ enum HTTPMethod : String {
 }
 
 protocol NetworkRequestFactory {
-    func produceRequest(baseURL: String, targetURL: String, clientID: String, method: HTTPMethod, query:[String:String]?, body: Data?) -> URLRequest?
+    func producePhotoListRequest(baseURL: String, targetURL: String, clientID: String, method: HTTPMethod, query:[String:String]?, body: Data?) -> URLRequest?
+    
 }
 
 class NetworkRequestFactoryImplementation: NetworkRequestFactory{
-    func produceRequest(baseURL: String, targetURL: String, clientID: String, method: HTTPMethod, query:[String:String]?, body: Data?) -> URLRequest? {
+    func producePhotoListRequest(baseURL: String, targetURL: String, clientID: String, method: HTTPMethod, query:[String:String]?, body: Data?) -> URLRequest? {
         
         //MARK:- Produce URLComponent
         var component = URLComponents(string: baseURL)

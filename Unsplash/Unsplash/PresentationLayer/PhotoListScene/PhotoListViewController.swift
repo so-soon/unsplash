@@ -10,6 +10,7 @@ import UIKit
 class PhotoListViewController: UIViewController {
     var configurator = PhotoListConfiguratorImplementation()
     var presenter: PhotoListPresenter!
+    var prevSearchWord : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,8 @@ class PhotoListViewController: UIViewController {
         
         self.photoListTableView.dataSource = self
         self.photoListTableView.delegate = self
-        self.photoListTableView.prefetchDataSource = self
+        
+        self.photoSearchBar.delegate = self
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -30,14 +32,8 @@ class PhotoListViewController: UIViewController {
     
     //MARK:- Interface Builder Links
     @IBOutlet weak var photoListTableView: UITableView!
+    @IBOutlet weak var photoSearchBar: UISearchBar!
     
-    @IBAction func unWindToPhotoListView(_ unwindSegue : UIStoryboardSegue) {
-        // Todo :
-    }
-    
-    @IBAction func searchTextFieldEndEdit(_ sender: UITextField) {
-        presenter.searchTextFieldEndEdit(with: sender.text.orEmpty())
-    }
 }
 
 extension PhotoListViewController : UITableViewDataSource {
@@ -46,26 +42,16 @@ extension PhotoListViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let photoDataCount = presenter.numberOfRowsInSection()
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoListTableViewCell.id, for: indexPath) as! PhotoListTableViewCell
         presenter.configure(cell: cell, forRow: indexPath.row)
         
-        return cell
-    }
-}
-
-extension PhotoListViewController : UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        let photoDataCount = presenter.numberOfRowsInSection()
-        
-        if photoDataCount == 0 {
-            return
-        }else{
-            for indexPath in indexPaths {
-                if photoDataCount == (indexPath.row + 1) {
-                    presenter.fetchPhotoList()
-                }
-            }
+        if indexPath.row == photoDataCount - 1 {
+            presenter.fetchPhotoList(searchWord:prevSearchWord)
         }
+        
+        return cell
     }
 }
 
@@ -79,6 +65,29 @@ extension PhotoListViewController : UITableViewDelegate {
         let height = CGFloat(presenter.photoRatioHeight(cellAt: indexPath.row)) * width
         
         return height
+    }
+}
+
+extension PhotoListViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print(searchBar.text.orEmpty())
+        self.prevSearchWord = searchBar.text
+        presenter.searchTextFieldEndEdit(with: searchBar.text)
+        hideCancelButton(searchBar)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        hideCancelButton(searchBar)
+    }
+    
+    func hideCancelButton(_ searchBar: UISearchBar){
+        searchBar.resignFirstResponder()
+        searchBar.setShowsCancelButton(false, animated: true)
     }
 }
 

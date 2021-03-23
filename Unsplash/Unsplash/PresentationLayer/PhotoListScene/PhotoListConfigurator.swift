@@ -24,7 +24,7 @@ class PhotoListConfiguratorImplementation: PhotoListConfigurator{
         
         let fetchPhotoListUseCase = FetchDefaultPhotoListUseCaseImplementation(repository: photoListRepository)
         let fetchPhotoImageUsecase = FetchPhotoImageUseCaseImplementation(repository: photoRepository)
-        let searchPhotoListUseCase = SearchPhotoListUseCaseImplementation()
+        let searchPhotoListUseCase = SearchPhotoListUseCaseImplementation(repository: photoListRepository)
         
         let router = PhotoListRouterImplementation(photoListViewController: photoListViewController)
         

@@ -22,7 +22,6 @@ class PhotoDetailViewController: UIViewController {
         
         self.photoCollectionView.dataSource = self
         self.photoCollectionView.delegate = self
-        self.photoCollectionView.prefetchDataSource = self
         
         configurator.configure(photoDetailViewController: self)
     }
@@ -59,9 +58,15 @@ extension PhotoDetailViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let photoDataCount = presenter.numberOfRowsInSection()
+        
         let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: PhotoDetailCollectionViewCell.id, for: indexPath) as! PhotoDetailCollectionViewCell
         
         presenter.configure(cell: cell, rowRow: indexPath.row)
+        
+        if indexPath.row == photoDataCount - 3 {
+            presenter.cellReachEndIndex(at: indexPath.row)
+        }
         
         return cell
     }
@@ -73,21 +78,6 @@ extension PhotoDetailViewController: UICollectionViewDelegate {
     }
 }
 
-extension PhotoDetailViewController: UICollectionViewDataSourcePrefetching {
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        let photoDataCount = presenter.numberOfRowsInSection()
-        
-        if photoDataCount == 0 {
-            return
-        }else{
-            for indexPath in indexPaths{
-                if photoDataCount == (indexPath.row + 3) {
-                    presenter.cellReachEndIndex(at: indexPath.row)
-                }
-            }
-        }
-    }
-}
 
 extension PhotoDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
