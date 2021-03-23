@@ -66,7 +66,7 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     }
     
     func configure(cell : PhotoListTableViewCell, forRow row: Int){
-        if row >= photoListData.count {return}
+        if row >= photoListData.count {return} 
         
         let url = photoListData[row].imageURL
         let userName = photoListData[row].userName

@@ -60,9 +60,9 @@ extension PhotoDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let photoDataCount = presenter.numberOfRowsInSection()
         
-        let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: PhotoDetailCollectionViewCell.id, for: indexPath) as! PhotoDetailCollectionViewCell
+        let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: PhotoDetailCollectionViewCellImplementation.id, for: indexPath) as! PhotoDetailCollectionViewCellImplementation
         
-        presenter.configure(cell: cell, rowRow: indexPath.row)
+        presenter.configure(cell: cell, forRow: indexPath.row)
         
         if indexPath.row == photoDataCount - 3 {
             presenter.cellReachEndIndex(at: indexPath.row)

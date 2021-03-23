@@ -9,12 +9,14 @@ import XCTest
 @testable import Unsplash
 
 class PhotoListPresenterTest: XCTestCase {
+    let viewMock = PhotoListViewMock()
     let fetchDefaultPhotoListUseCaseMock = FetchDefaultPhotoListUseCaseMock()
     let fetchPhotoImageUseCaseMock = FetchPhotoImageUseCaseMock()
     let searchPhotoListUseCaseMock = SearchPhotoListUseCaseMock()
     let routerMock = PhotoListRouterMock()
-    let viewMock = PhotoListViewMock()
+    
     let cellMock = PhotoListTableViewCellMock()
+    
     let photoListCreator = PhotoListMockCreator()
     let imageDataCreator = UIImageDataCreator()
     
@@ -43,7 +45,7 @@ class PhotoListPresenterTest: XCTestCase {
         //Given
         
         let expectedData = photoListCreator.createTenMockData()
-        fetchDefaultPhotoListUseCaseMock.setMockData(expectedData)
+        presenter.photoListData = expectedData
         let row = expectedData.count + 1
         
         //When

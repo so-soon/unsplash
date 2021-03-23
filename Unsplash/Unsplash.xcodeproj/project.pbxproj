@@ -59,6 +59,10 @@
 		25D8AAA62609E146009E0BCE /* PhotoListRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AAA52609E146009E0BCE /* PhotoListRouterMock.swift */; };
 		25D8AAAB2609E221009E0BCE /* PhotoListViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AAAA2609E221009E0BCE /* PhotoListViewMock.swift */; };
 		25D8AAB02609F27B009E0BCE /* PhotoListTableViewCellMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AAAF2609F27B009E0BCE /* PhotoListTableViewCellMock.swift */; };
+		25D8AAB7260A1AD0009E0BCE /* PhotoDetailViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AAB6260A1AD0009E0BCE /* PhotoDetailViewMock.swift */; };
+		25D8AABF260A1B34009E0BCE /* PhotoDetailRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AABE260A1B34009E0BCE /* PhotoDetailRouterMock.swift */; };
+		25D8AAC7260A1B6E009E0BCE /* PhotoDetailPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AAC6260A1B6E009E0BCE /* PhotoDetailPresenterDelegateMock.swift */; };
+		25D8AACC260A1D5C009E0BCE /* PhotoDetailCollectionViewCellMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AACB260A1D5C009E0BCE /* PhotoDetailCollectionViewCellMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +141,10 @@
 		25D8AAA52609E146009E0BCE /* PhotoListRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListRouterMock.swift; sourceTree = "<group>"; };
 		25D8AAAA2609E221009E0BCE /* PhotoListViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListViewMock.swift; sourceTree = "<group>"; };
 		25D8AAAF2609F27B009E0BCE /* PhotoListTableViewCellMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListTableViewCellMock.swift; sourceTree = "<group>"; };
+		25D8AAB6260A1AD0009E0BCE /* PhotoDetailViewMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewMock.swift; sourceTree = "<group>"; };
+		25D8AABE260A1B34009E0BCE /* PhotoDetailRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailRouterMock.swift; sourceTree = "<group>"; };
+		25D8AAC6260A1B6E009E0BCE /* PhotoDetailPresenterDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailPresenterDelegateMock.swift; sourceTree = "<group>"; };
+		25D8AACB260A1D5C009E0BCE /* PhotoDetailCollectionViewCellMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailCollectionViewCellMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,9 +430,8 @@
 		25D8AA462609BECF009E0BCE /* PresentationLayerMocks */ = {
 			isa = PBXGroup;
 			children = (
-				25D8AAA52609E146009E0BCE /* PhotoListRouterMock.swift */,
-				25D8AAAA2609E221009E0BCE /* PhotoListViewMock.swift */,
-				25D8AAAF2609F27B009E0BCE /* PhotoListTableViewCellMock.swift */,
+				25D8AAB5260A1AC3009E0BCE /* PhotoDetailScene */,
+				25D8AAB4260A1AB8009E0BCE /* PhotoListScene */,
 			);
 			path = PresentationLayerMocks;
 			sourceTree = "<group>";
@@ -482,6 +489,27 @@
 				25D8AA982609DFD0009E0BCE /* UIImageDataCreator.swift */,
 			);
 			path = Creator;
+			sourceTree = "<group>";
+		};
+		25D8AAB4260A1AB8009E0BCE /* PhotoListScene */ = {
+			isa = PBXGroup;
+			children = (
+				25D8AAA52609E146009E0BCE /* PhotoListRouterMock.swift */,
+				25D8AAAA2609E221009E0BCE /* PhotoListViewMock.swift */,
+				25D8AAAF2609F27B009E0BCE /* PhotoListTableViewCellMock.swift */,
+			);
+			path = PhotoListScene;
+			sourceTree = "<group>";
+		};
+		25D8AAB5260A1AC3009E0BCE /* PhotoDetailScene */ = {
+			isa = PBXGroup;
+			children = (
+				25D8AAB6260A1AD0009E0BCE /* PhotoDetailViewMock.swift */,
+				25D8AABE260A1B34009E0BCE /* PhotoDetailRouterMock.swift */,
+				25D8AAC6260A1B6E009E0BCE /* PhotoDetailPresenterDelegateMock.swift */,
+				25D8AACB260A1D5C009E0BCE /* PhotoDetailCollectionViewCellMock.swift */,
+			);
+			path = PhotoDetailScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -652,6 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25D8AAB02609F27B009E0BCE /* PhotoListTableViewCellMock.swift in Sources */,
+				25D8AABF260A1B34009E0BCE /* PhotoDetailRouterMock.swift in Sources */,
 				25D8A94726064205009E0BCE /* UnsplashTests.swift in Sources */,
 				25D8AA842609D5BE009E0BCE /* FetchDefaultPhotoListUseCaseMock.swift in Sources */,
 				25D8AA4E2609C041009E0BCE /* PhotoListPresenterTest.swift in Sources */,
@@ -667,8 +696,11 @@
 				25D8AA5B2609C13A009E0BCE /* APIServiceTest.swift in Sources */,
 				25D8AA932609DF48009E0BCE /* FetchPhotoImageUseCaseMock.swift in Sources */,
 				25D8AA562609C04F009E0BCE /* PhotoDetailPresenterTest.swift in Sources */,
+				25D8AAC7260A1B6E009E0BCE /* PhotoDetailPresenterDelegateMock.swift in Sources */,
 				25D8AA722609C18D009E0BCE /* FetchDefaultPhotoListUseCaseTest.swift in Sources */,
 				25D8AA7A2609C19B009E0BCE /* FetchPhotoImageUseCaseTest.swift in Sources */,
+				25D8AACC260A1D5C009E0BCE /* PhotoDetailCollectionViewCellMock.swift in Sources */,
+				25D8AAB7260A1AD0009E0BCE /* PhotoDetailViewMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

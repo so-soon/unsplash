@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoDetailCollectionViewCell: UICollectionViewCell {
+class PhotoDetailCollectionViewCellImplementation: UICollectionViewCell {
     static let id = "PhotoDetailCollectionViewCell"
     var url : String?
     
@@ -25,6 +25,13 @@ class PhotoDetailCollectionViewCell: UICollectionViewCell {
         self.url = nil
     }
     
+    
+    
+    
+}
+
+extension PhotoDetailCollectionViewCellImplementation: PhotoDetailCollectionViewCell {
+    
     func setImage(_ imgData: Data,_ userName: String, _ url : String){
         DispatchQueue.main.async { [weak self] in
             let image = UIImage(data: imgData)
@@ -40,5 +47,4 @@ class PhotoDetailCollectionViewCell: UICollectionViewCell {
             self?.url = url
         }
     }
-
 }

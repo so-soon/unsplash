@@ -10,9 +10,15 @@ protocol PhotoDetailView: class {
     func reloadCollectionView()
 }
 
+protocol PhotoDetailCollectionViewCell {
+    var url : String? {get set}
+    func setImage(_ imgData: Data,_ userName: String, _ url : String)
+    func setImage(_ imgData: AnyObject,_ userName: String, _ url : String)
+}
+
 protocol PhotoDetailPresenter {
     func viewDidLoad()
-    func configure(cell: PhotoDetailCollectionViewCell, rowRow row: Int)
+    func configure(cell: PhotoDetailCollectionViewCell, forRow row: Int)
     
     func numberOfRowsInSection() -> Int
     func cellReachEndIndex(at row: Int)
@@ -34,7 +40,7 @@ class PhotoDetailPresenterImplementation: PhotoDetailPresenter{
     
     let router : PhotoDetailRouter
     private var delegate : PhotoDetailPresenterDelegate?
-    private var photoListData : [PhotoModel] = []
+    var photoListData : [PhotoModel] = []
     
     init(view: PhotoDetailView,
          fetchPhotoImageUseCase : FetchPhotoImageUseCase,
@@ -53,7 +59,9 @@ class PhotoDetailPresenterImplementation: PhotoDetailPresenter{
         
     }
     
-    func configure(cell: PhotoDetailCollectionViewCell, rowRow row: Int){
+    func configure(cell: PhotoDetailCollectionViewCell, forRow row: Int){
+        if row >= photoListData.count {return}
+        
         let url = photoListData[row].imageURL
         let userName = photoListData[row].userName
         
