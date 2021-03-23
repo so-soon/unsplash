@@ -22,7 +22,7 @@ protocol PhotoDetailPresenter {
 }
 
 protocol PhotoDetailPresenterDelegate: class {
-    func fetchPhotoListFromDetailPresetner(at row : Int) -> [PhotoModel]
+    func fetchPhotoListFromDetailPresetner() -> [PhotoModel]
     func movePhotoFocus(to row: Int)
     func viewWillAppear()
     func viewWillDisappear()
@@ -77,7 +77,7 @@ class PhotoDetailPresenterImplementation: PhotoDetailPresenter{
     }
     
     func cellReachEndIndex(at row: Int){
-        self.photoListData = self.delegate?.fetchPhotoListFromDetailPresetner(at: row) ?? []
+        self.photoListData = self.delegate?.fetchPhotoListFromDetailPresetner() ?? []
         self.view?.reloadCollectionView()
     }
     

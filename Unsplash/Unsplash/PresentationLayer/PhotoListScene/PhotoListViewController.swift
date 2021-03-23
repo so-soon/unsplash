@@ -10,7 +10,7 @@ import UIKit
 class PhotoListViewController: UIViewController {
     var configurator = PhotoListConfiguratorImplementation()
     var presenter: PhotoListPresenter!
-    var prevSearchWord : String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ extension PhotoListViewController : UITableViewDataSource {
         presenter.configure(cell: cell, forRow: indexPath.row)
         
         if indexPath.row == photoDataCount - 1 {
-            presenter.fetchPhotoList(searchWord:prevSearchWord)
+            presenter.updatePhotoList()
         }
         
         return cell
@@ -74,8 +74,6 @@ extension PhotoListViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print(searchBar.text.orEmpty())
-        self.prevSearchWord = searchBar.text
         presenter.searchTextFieldEndEdit(with: searchBar.text)
         hideCancelButton(searchBar)
     }

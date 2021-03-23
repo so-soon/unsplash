@@ -27,8 +27,7 @@ protocol PhotoListPresenter {
     func didSelect(cellAt row: Int)
     func searchTextFieldEndEdit(with searchWord : String?)
     
-    func fetchPhotoList(searchWord: String?)
-    func flushPhotoList()
+    func updatePhotoList()
 }
 
 //MARK:- Implementation
@@ -37,7 +36,9 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     fileprivate let fetchDefaultPhotoListUseCase : FetchDefaultPhotoListUseCase
     fileprivate let fetchPhotoImageUseCase : FetchPhotoImageUseCase
     fileprivate let searchPhotoListUseCase : SearchPhotoListUseCase
+    private var prevSearchWord : String?
     var router : PhotoListRouter
+    
     
     fileprivate var photoListData : [PhotoModel] = []
 
@@ -94,15 +95,22 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     }
     
     func searchTextFieldEndEdit(with searchWord : String?) {
-        // Todo :
-        guard let searchWord = searchWord else {return}
+        if self.prevSearchWord == searchWord || searchWord == nil {return}
+        self.prevSearchWord = searchWord
+        
         flushPhotoList()
         fetchPhotoList(searchWord: searchWord)
         self.view?.moveSrollFocus(at: 0)
     }
     
-    func fetchPhotoList(searchWord: String?){
-        if searchWord == nil{
+    func updatePhotoList(){
+        fetchPhotoList(searchWord: self.prevSearchWord)
+    }
+    
+    
+    //MARK:- Private
+    private func fetchPhotoList(searchWord: String?){
+        if searchWord == nil || searchWord == ""{
             fetchDefaultPhotoListUseCase.execute(){ [weak self] result in
                 switch result {
                 case .success(let photoList):
@@ -123,14 +131,11 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
                 }
             }
         }
-        
     }
     
-    func flushPhotoList(){
+    private func flushPhotoList(){
         photoListData.removeAll()
     }
-    
-    //MARK:- Private
     
     private func addPhotoList(_ photoList : [PhotoModel]) {
         photoListData.append(contentsOf: photoList)
@@ -144,8 +149,8 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
 }
 
 extension PhotoListPresenterImplementation: PhotoDetailPresenterDelegate {
-    func fetchPhotoListFromDetailPresetner(at row : Int)  -> [PhotoModel] {
-        fetchPhotoList(searchWord: nil)
+    func fetchPhotoListFromDetailPresetner()  -> [PhotoModel] {
+        fetchPhotoList(searchWord: self.prevSearchWord)
         return self.photoListData
     }
     
