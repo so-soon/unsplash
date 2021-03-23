@@ -17,11 +17,15 @@ protocol PhotoDetailPresenter {
     func numberOfRowsInSection() -> Int
     func cellReachEndIndex(at row: Int)
     func changePhotoFocus(to row: Int)
+    func viewWillAppear()
+    func viewWillDisappear()
 }
 
 protocol PhotoDetailPresenterDelegate: class {
     func fetchPhotoListFromDetailPresetner(at row : Int) -> [PhotoModel]
     func movePhotoFocus(to row: Int)
+    func viewWillAppear()
+    func viewWillDisappear()
 }
 
 class PhotoDetailPresenterImplementation: PhotoDetailPresenter{
@@ -79,6 +83,13 @@ class PhotoDetailPresenterImplementation: PhotoDetailPresenter{
     
     func changePhotoFocus(to row: Int){
         self.delegate?.movePhotoFocus(to: row)
+    }
+    
+    func viewWillAppear(){
+        self.delegate?.viewWillAppear()
+    }
+    func viewWillDisappear(){
+        self.delegate?.viewWillDisappear()
     }
     
 }

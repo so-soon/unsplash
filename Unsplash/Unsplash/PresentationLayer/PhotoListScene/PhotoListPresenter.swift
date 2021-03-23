@@ -12,6 +12,8 @@ protocol PhotoListView: class {
     // Todo :
     func reloadTableView()
     func moveSrollFocus(at row: Int)
+    func detailViewWillAppear()
+    func detailViewWilldisappear()
 }
 
 protocol PhotoListPresenter {
@@ -129,5 +131,13 @@ extension PhotoListPresenterImplementation: PhotoDetailPresenterDelegate {
     
     func movePhotoFocus(to row: Int) {
         self.view?.moveSrollFocus(at: row)
+    }
+    
+    func viewWillAppear(){
+        self.view?.detailViewWillAppear()
+    }
+    
+    func viewWillDisappear(){
+        self.view?.detailViewWilldisappear()
     }
 }

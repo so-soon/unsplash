@@ -93,4 +93,16 @@ extension PhotoListViewController: PhotoListView {
         let indexPath = IndexPath(row: row, section: 0)
         self.photoListTableView.scrollToRow(at: indexPath, at: .middle, animated: false)
     }
+    
+    func detailViewWillAppear(){
+        self.view.backgroundColor = .black
+    }
+    func detailViewWilldisappear(){
+        if #available(iOS 13.0, *){
+            self.view.backgroundColor = .systemBackground
+        }else{
+            self.view.backgroundColor = .white
+        }
+        
+    }
 }

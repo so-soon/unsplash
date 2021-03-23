@@ -25,13 +25,20 @@ class PhotoDetailViewController: UIViewController {
         self.photoCollectionView.prefetchDataSource = self
         
         configurator.configure(photoDetailViewController: self)
-        
-        
     }
     
     override func viewDidLayoutSubviews() {
         self.setCellFocusOffset()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        presenter.viewWillAppear()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        presenter.viewWillDisappear()
+    }
+    
     //MARK:- Interface Builder Links
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
