@@ -21,7 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnf-fG-CFl" userLabel="SearchAreaView">
                                 <rect key="frame" x="0.0" y="44" width="414" height="62"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" showsSearchResultsButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5V8-W7-kGB">
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="5V8-W7-kGB">
                                         <rect key="frame" x="0.0" y="3" width="414" height="56"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <textInputTraits key="textInputTraits"/>
