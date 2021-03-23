@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoListTableViewCell: UITableViewCell {
+class PhotoListTableViewCellImplementation: UITableViewCell {
     static let id = "PhotoListTableViewCell"
     var url : String?
     
@@ -27,6 +27,10 @@ class PhotoListTableViewCell: UITableViewCell {
         self.userNameLabel.text = nil
         self.url = nil
     }
+
+}
+
+extension PhotoListTableViewCellImplementation : PhotoListTableViewCell {
     func setImage(_ imgData: Data,_ userName: String, _ url : String){
         DispatchQueue.main.async { [weak self] in
             let image = UIImage(data: imgData)
@@ -44,5 +48,4 @@ class PhotoListTableViewCell: UITableViewCell {
             self?.url = url
         }
     }
-
 }

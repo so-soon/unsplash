@@ -11,10 +11,12 @@ import UIKit
 class PhotoListRouterMock :PhotoListRouter{
     var delegate : PhotoDetailPresenterDelegate?
     var photoListData : [PhotoModel]?
+    var sender: Int?
     
     func presentDetailsView(delegate: PhotoDetailPresenterDelegate, photoListData: [PhotoModel], at row: Int) {
         self.delegate = delegate
         self.photoListData = photoListData
+        self.sender = row
     }
     
     func perpare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -24,6 +26,7 @@ class PhotoListRouterMock :PhotoListRouter{
     func reset(){
         self.delegate = nil
         self.photoListData = nil
+        self.sender = nil
     }
     
     

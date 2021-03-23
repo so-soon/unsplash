@@ -16,6 +16,13 @@ protocol PhotoListView: class {
     func detailViewWilldisappear()
 }
 
+protocol PhotoListTableViewCell {
+    var url : String? {get set}
+    
+    func setImage(_ imgData: Data,_ userName: String, _ url : String)
+    func setImage(_ imgData: AnyObject,_ userName: String, _ url : String)
+}
+
 protocol PhotoListPresenter {
     var router : PhotoListRouter { get }
     func viewDidLoad()

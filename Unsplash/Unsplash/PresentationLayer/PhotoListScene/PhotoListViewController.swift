@@ -17,8 +17,8 @@ class PhotoListViewController: UIViewController {
         configurator.configure(photoListViewController: self)
         presenter.viewDidLoad()
         
-        let cellNib = UINib(nibName: PhotoListTableViewCell.id, bundle: nil)
-        self.photoListTableView.register(cellNib, forCellReuseIdentifier: PhotoListTableViewCell.id)
+        let cellNib = UINib(nibName: PhotoListTableViewCellImplementation.id, bundle: nil)
+        self.photoListTableView.register(cellNib, forCellReuseIdentifier: PhotoListTableViewCellImplementation.id)
         
         self.photoListTableView.dataSource = self
         self.photoListTableView.delegate = self
@@ -44,7 +44,7 @@ extension PhotoListViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let photoDataCount = presenter.numberOfRowsInSection()
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: PhotoListTableViewCell.id, for: indexPath) as! PhotoListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: PhotoListTableViewCellImplementation.id, for: indexPath) as! PhotoListTableViewCellImplementation
         presenter.configure(cell: cell, forRow: indexPath.row)
         
         if indexPath.row == photoDataCount - 1 {
