@@ -13,7 +13,6 @@
 		25D8A93726064201009E0BCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D8A93526064201009E0BCE /* Main.storyboard */; };
 		25D8A93926064205009E0BCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25D8A93826064205009E0BCE /* Assets.xcassets */; };
 		25D8A93C26064205009E0BCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D8A93A26064205009E0BCE /* LaunchScreen.storyboard */; };
-		25D8A94726064205009E0BCE /* UnsplashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A94626064205009E0BCE /* UnsplashTests.swift */; };
 		25D8A95226064206009E0BCE /* UnsplashUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A95126064206009E0BCE /* UnsplashUITests.swift */; };
 		25D8A96E260642BA009E0BCE /* PhotoDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A96D260642BA009E0BCE /* PhotoDetailPresenter.swift */; };
 		25D8A974260642E4009E0BCE /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8A973260642E4009E0BCE /* PhotoDetailViewController.swift */; };
@@ -63,6 +62,8 @@
 		25D8AABF260A1B34009E0BCE /* PhotoDetailRouterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AABE260A1B34009E0BCE /* PhotoDetailRouterMock.swift */; };
 		25D8AAC7260A1B6E009E0BCE /* PhotoDetailPresenterDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AAC6260A1B6E009E0BCE /* PhotoDetailPresenterDelegateMock.swift */; };
 		25D8AACC260A1D5C009E0BCE /* PhotoDetailCollectionViewCellMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AACB260A1D5C009E0BCE /* PhotoDetailCollectionViewCellMock.swift */; };
+		25D8AAD4260A26B0009E0BCE /* PhotoListRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AAD3260A26B0009E0BCE /* PhotoListRepositoryMock.swift */; };
+		25D8AAD9260A2D74009E0BCE /* PhotoRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D8AAD8260A2D74009E0BCE /* PhotoRepositoryMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +93,6 @@
 		25D8A93B26064205009E0BCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25D8A93D26064205009E0BCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25D8A94226064205009E0BCE /* UnsplashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnsplashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		25D8A94626064205009E0BCE /* UnsplashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashTests.swift; sourceTree = "<group>"; };
 		25D8A94826064205009E0BCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25D8A94D26064206009E0BCE /* UnsplashUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnsplashUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25D8A95126064206009E0BCE /* UnsplashUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashUITests.swift; sourceTree = "<group>"; };
@@ -145,6 +145,8 @@
 		25D8AABE260A1B34009E0BCE /* PhotoDetailRouterMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailRouterMock.swift; sourceTree = "<group>"; };
 		25D8AAC6260A1B6E009E0BCE /* PhotoDetailPresenterDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailPresenterDelegateMock.swift; sourceTree = "<group>"; };
 		25D8AACB260A1D5C009E0BCE /* PhotoDetailCollectionViewCellMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailCollectionViewCellMock.swift; sourceTree = "<group>"; };
+		25D8AAD3260A26B0009E0BCE /* PhotoListRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListRepositoryMock.swift; sourceTree = "<group>"; };
+		25D8AAD8260A2D74009E0BCE /* PhotoRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepositoryMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,7 +214,6 @@
 				25D8AA432609BEAF009E0BCE /* DataLayerTest */,
 				25D8AA422609BEA6009E0BCE /* PresentationLayerTest */,
 				25D8AA412609BE9A009E0BCE /* DomainLayerTest */,
-				25D8A94626064205009E0BCE /* UnsplashTests.swift */,
 				25D8A94826064205009E0BCE /* Info.plist */,
 			);
 			path = UnsplashTests;
@@ -423,6 +424,8 @@
 		25D8AA452609BECA009E0BCE /* DataLayerMocks */ = {
 			isa = PBXGroup;
 			children = (
+				25D8AAD3260A26B0009E0BCE /* PhotoListRepositoryMock.swift */,
+				25D8AAD8260A2D74009E0BCE /* PhotoRepositoryMock.swift */,
 			);
 			path = DataLayerMocks;
 			sourceTree = "<group>";
@@ -681,9 +684,9 @@
 			files = (
 				25D8AAB02609F27B009E0BCE /* PhotoListTableViewCellMock.swift in Sources */,
 				25D8AABF260A1B34009E0BCE /* PhotoDetailRouterMock.swift in Sources */,
-				25D8A94726064205009E0BCE /* UnsplashTests.swift in Sources */,
 				25D8AA842609D5BE009E0BCE /* FetchDefaultPhotoListUseCaseMock.swift in Sources */,
 				25D8AA4E2609C041009E0BCE /* PhotoListPresenterTest.swift in Sources */,
+				25D8AAD9260A2D74009E0BCE /* PhotoRepositoryMock.swift in Sources */,
 				25D8AA6D2609C165009E0BCE /* PhotoListRepositoryTest.swift in Sources */,
 				25D8AA682609C15A009E0BCE /* PhotoRepositoryTest.swift in Sources */,
 				25D8AAAB2609E221009E0BCE /* PhotoListViewMock.swift in Sources */,
@@ -700,6 +703,7 @@
 				25D8AA722609C18D009E0BCE /* FetchDefaultPhotoListUseCaseTest.swift in Sources */,
 				25D8AA7A2609C19B009E0BCE /* FetchPhotoImageUseCaseTest.swift in Sources */,
 				25D8AACC260A1D5C009E0BCE /* PhotoDetailCollectionViewCellMock.swift in Sources */,
+				25D8AAD4260A26B0009E0BCE /* PhotoListRepositoryMock.swift in Sources */,
 				25D8AAB7260A1AD0009E0BCE /* PhotoDetailViewMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
