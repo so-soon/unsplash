@@ -14,6 +14,8 @@ class PhotoDetailViewController: UIViewController {
     
     var cellFocusOffset : Int?
     
+    private var maxPageCount = 0
+    
     private var collectionViewWidth : CGFloat = 0
     private var collectionViewHeight : CGFloat = 0
     
@@ -64,8 +66,10 @@ extension PhotoDetailViewController: UICollectionViewDataSource {
         
         presenter.configure(cell: cell, forRow: indexPath.row)
         
-        if indexPath.row == photoDataCount - 3 {
+        if indexPath.row == photoDataCount - 3
+            && photoDataCount != self.maxPageCount {
             presenter.cellReachEndIndex(at: indexPath.row)
+            self.maxPageCount = photoDataCount
         }
         
         return cell

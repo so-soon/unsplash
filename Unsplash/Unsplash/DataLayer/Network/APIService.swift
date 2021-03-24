@@ -154,7 +154,7 @@ class APIServiceImplementation: APIService {
         do{
             let jsonData = try JSONDecoder().decode(T.self, from: data)
             return jsonData
-        }catch{
+        }catch(let error){
             return nil
         }
     }

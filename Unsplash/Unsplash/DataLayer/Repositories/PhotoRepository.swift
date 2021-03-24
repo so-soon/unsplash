@@ -26,6 +26,7 @@ class PhotoRepositoryImplementation: PhotoRepository {
     func fetching(imageURL: String,
                   cached: @escaping (AnyObject) -> Void,
                   completion: @escaping (Result<Data,Error>) -> Void){
+        
         let request = ImageRequestDTO(url: imageURL)
         
         DispatchQueue.global().async {[weak self] in

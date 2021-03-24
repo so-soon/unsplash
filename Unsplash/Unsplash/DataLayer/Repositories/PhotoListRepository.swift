@@ -28,10 +28,14 @@ class PhotoListRepositoryImplementaiton: PhotoListRepository{
     
     //MARK:- Default fetch photolist
     func fetching(completion: @escaping (Result<[PhotoModel],Error>) -> Void){
+        self.totalPages = nil
+        self.prevSearchWord = nil
+        
         page += 1
+        
         let requestDTO = PhotoListRequestDTO(page: page)
         
-        apiService.requestPhotoList(request: requestDTO){result in
+        apiService.requestPhotoList(request: requestDTO){[weak self] result in
             switch result {
             case .success(let responseDTO):
                 completion(.success(responseDTO.map{$0.toDomain()}))

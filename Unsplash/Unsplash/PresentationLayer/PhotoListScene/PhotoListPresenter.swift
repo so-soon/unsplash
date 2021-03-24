@@ -80,8 +80,8 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
                                         case .success(let imgData):
                                             cell.setImage(imgData,userName,url)
                                         case .failure(let error):
-                                        // Todo : Error handling
                                             print(error.localizedDescription)
+                                            cell.setImage(NetworkErrorHandler.shared.getErrorImage(), NetworkErrorHandler.errorImageUser, NetworkErrorHandler.errorImageURL)
                                         }
                                        })
     }
@@ -107,7 +107,9 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
         
         flushPhotoList()
         fetchPhotoList(searchWord: searchWord)
-        self.view?.moveSrollFocus(at: 0)
+        if self.photoListData.count != 0 {
+            self.view?.moveSrollFocus(at: 0)
+        }
     }
     
     func updatePhotoList(){
@@ -122,9 +124,11 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
                 switch result {
                 case .success(let photoList):
                     self?.addPhotoList(photoList)
+                    self?.removeErrorImage()
                     self?.view?.reloadTableView()
                 case .failure(let error):
                     self?.errorHandler(error)
+                    self?.view?.reloadTableView()
                 }
             }
         }else{
@@ -132,9 +136,11 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
                 switch result {
                 case .success(let photoList):
                     self?.addPhotoList(photoList)
+                    self?.removeErrorImage()
                     self?.view?.reloadTableView()
                 case .failure(let error):
                     self?.errorHandler(error)
+                    self?.view?.reloadTableView()
                 }
             }
         }
@@ -148,9 +154,30 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
         photoListData.append(contentsOf: photoList)
     }
     
+    private func removeErrorImage(){
+        var toBePhotoListData :[PhotoModel] = []
+        
+        for photoModel in self.photoListData{
+            if photoModel.id != NetworkErrorHandler.errorImageId{
+                toBePhotoListData.append(photoModel)
+            }
+        }
+        self.photoListData = toBePhotoListData
+    }
+    
     private func errorHandler(_ error : Error) {
-        // Todo :
         print(error.localizedDescription)
+        var photoList : [PhotoModel] = []
+        
+        for _ in 0..<10{
+            photoList.append(PhotoModel(id: NetworkErrorHandler.errorImageId,
+                                        userName: NetworkErrorHandler.errorImageId,
+                                        imageURL: NetworkErrorHandler.errorImageURL,
+                                        width: NetworkErrorHandler.errorImageWidth,
+                                        height: NetworkErrorHandler.errorImageHeight))
+        }
+        
+        self.addPhotoList(photoList)
     }
     
 }

@@ -11,6 +11,7 @@ class PhotoListViewController: UIViewController {
     var configurator = PhotoListConfiguratorImplementation()
     var presenter: PhotoListPresenter!
     
+    private var maxPageCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +48,9 @@ extension PhotoListViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoListTableViewCellImplementation.id, for: indexPath) as! PhotoListTableViewCellImplementation
         presenter.configure(cell: cell, forRow: indexPath.row)
         
-        if indexPath.row == photoDataCount - 1 {
+        if indexPath.row == photoDataCount - 1 && photoDataCount != self.maxPageCount {
             presenter.updatePhotoList()
+            self.maxPageCount = photoDataCount
         }
         
         return cell
@@ -74,6 +76,7 @@ extension PhotoListViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.maxPageCount = 0
         presenter.searchTextFieldEndEdit(with: searchBar.text)
         hideCancelButton(searchBar)
     }

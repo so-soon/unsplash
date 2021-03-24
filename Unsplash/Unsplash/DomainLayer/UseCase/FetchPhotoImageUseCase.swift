@@ -23,8 +23,9 @@ class FetchPhotoImageUseCaseImplementation: FetchPhotoImageUseCase {
     func execute(imageURL: String,
                  cached: @escaping (AnyObject) -> Void,
                  completion: @escaping (Result<Data,Error>) -> Void) {
+        
         repository.fetching(imageURL: imageURL,
-                            cached: cached){ result in
+                            cached: cached){result in
             switch result{
             case .success(let photo):
                 completion(.success(photo))
@@ -32,5 +33,6 @@ class FetchPhotoImageUseCaseImplementation: FetchPhotoImageUseCase {
                 completion(.failure(error))
             }
         }
+        
     }
 }

@@ -75,6 +75,7 @@ class PhotoDetailPresenterImplementation: PhotoDetailPresenter{
                                             cell.setImage(imgData, userName, url)
                                         case .failure(let error):
                                             print(error.localizedDescription)
+                                            cell.setImage(NetworkErrorHandler.shared.getErrorImage(), NetworkErrorHandler.errorImageUser, NetworkErrorHandler.errorImageURL)
                                         }
                                        })
         
