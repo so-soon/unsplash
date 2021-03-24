@@ -2,12 +2,11 @@
 
 **Unsplash API를 이용한 Unsplash Clone Application**
 
-![Simulator Screen Shot - iPhone 8 - 2021-03-24 at 19 10 17](https://user-images.githubusercontent.com/59683503/112339901-6bec5200-8d03-11eb-9be8-1b6b1f67307d.png){: width="225" height="225"}
+<img src="https://user-images.githubusercontent.com/59683503/112339901-6bec5200-8d03-11eb-9be8-1b6b1f67307d.png" width="225" height="225">
 
-![Simulator Screen Shot - iPhone 8 - 2021-03-24 at 19 10 09](https://user-images.githubusercontent.com/59683503/112339943-73abf680-8d03-11eb-9e4e-926c99a9371a.png){: width="225" height="225"}
+<img src="https://user-images.githubusercontent.com/59683503/112339943-73abf680-8d03-11eb-9e4e-926c99a9371a.png" width="225" height="225">
 
-![Simulator Screen Shot - iPhone 8 - 2021-03-24 at 19 09 53](https://user-images.githubusercontent.com/59683503/112339957-76a6e700-8d03-11eb-996f-3394e9eb9eb9.png){: width="225" height="225"}
-
+<img src="https://user-images.githubusercontent.com/59683503/112339957-76a6e700-8d03-11eb-996f-3394e9eb9eb9.png" width="225" height="225">
 
 [0.Environment](#"env")
 
