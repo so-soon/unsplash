@@ -30,7 +30,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedData = photoListCreator.createTenMockData()
+        let expectedData = photoListCreator.createMockData()
         fetchDefaultPhotoListUseCaseMock.setMockData(expectedData)
         
         //When
@@ -44,7 +44,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedData = photoListCreator.createTenMockData()
+        let expectedData = photoListCreator.createMockData()
         presenter.photoListData = expectedData
         let row = expectedData.count + 1
         
@@ -61,7 +61,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedPhotoListData = photoListCreator.createTenMockData()
+        let expectedPhotoListData = photoListCreator.createMockData()
         presenter.photoListData = expectedPhotoListData
         let row = Int.random(in: 0..<10)
         
@@ -81,7 +81,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedPhotoListData = photoListCreator.createTenMockData()
+        let expectedPhotoListData = photoListCreator.createMockData()
         presenter.photoListData = expectedPhotoListData
         let row = Int.random(in: 0..<10)
         
@@ -121,7 +121,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedData = photoListCreator.createTenMockData()
+        let expectedData = photoListCreator.createMockData()
         let row = expectedData.count + 1
         
         //When
@@ -138,7 +138,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedData = photoListCreator.createTenMockData()
+        let expectedData = photoListCreator.createMockData()
         presenter.photoListData = expectedData
         let row = Int.random(in: 0..<10)
         let expectedHeight = Float(expectedData[row].height) / Float(expectedData[row].width)
@@ -156,7 +156,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedData = photoListCreator.createTenMockData()
+        let expectedData = photoListCreator.createMockData()
         presenter.photoListData = expectedData
         let row = Int.random(in: 0..<10)
         
@@ -174,7 +174,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedData = photoListCreator.createTenMockData()
+        let expectedData = photoListCreator.createMockData()
         presenter.photoListData = expectedData
         let row = Int.random(in: 0..<10)
         
@@ -192,7 +192,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedData = photoListCreator.createTenMockData()
+        let expectedData = photoListCreator.createMockData()
         presenter.photoListData = expectedData
         let row = Int.random(in: 0..<10)
         
@@ -210,7 +210,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedSearchData = photoListCreator.createTenMockData()
+        let expectedSearchData = photoListCreator.createMockData()
         searchPhotoListUseCaseMock.setMockData(expectedSearchData)
         let searchWord = "DUPLICATED_SEARCH_WORD"
         presenter.searchTextFieldEndEdit(with: searchWord)
@@ -230,7 +230,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedSearchData = photoListCreator.createTenMockData()
+        let expectedSearchData = photoListCreator.createMockData()
         searchPhotoListUseCaseMock.setMockData(expectedSearchData)
         
         //When
@@ -246,10 +246,10 @@ class PhotoListPresenterTest: XCTestCase {
         
         //Given
         
-        let defaultData = photoListCreator.createTenMockData()
+        let defaultData = photoListCreator.createMockData()
         fetchDefaultPhotoListUseCaseMock.setMockData(defaultData)
         
-        let expectedSearchData = photoListCreator.createTenMockData()
+        let expectedSearchData = photoListCreator.createMockData()
         searchPhotoListUseCaseMock.setMockData(expectedSearchData)
         
         presenter.viewDidLoad()
@@ -267,13 +267,13 @@ class PhotoListPresenterTest: XCTestCase {
     func test_GivenPrevPostData_WhenSearchTextFieldEndEdit_ThenUpdateData(){
         
         //Given
-        let prevData = photoListCreator.createTenMockData()
+        let prevData = photoListCreator.createMockData()
         searchPhotoListUseCaseMock.setMockData(prevData)
         
         let prevSearchWord = "PREV_SEARCH_WORD"
         presenter.searchTextFieldEndEdit(with: prevSearchWord)
         
-        let postData = photoListCreator.createTenMockData()
+        let postData = photoListCreator.createMockData()
         searchPhotoListUseCaseMock.setMockData(postData)
         
         let postSearchWord = "POST_SEARCH_WORD"
@@ -291,7 +291,7 @@ class PhotoListPresenterTest: XCTestCase {
     func test_GivenPrevSearchWord_WhenUpdatePHotoList_ThenUpdateData(){
         
         //Given
-        let expectedSearchData = photoListCreator.createTenMockData()
+        let expectedSearchData = photoListCreator.createMockData()
         searchPhotoListUseCaseMock.setMockData(expectedSearchData)
         let searchWord = "UNIT_TEST"
         presenter.searchTextFieldEndEdit(with: searchWord)

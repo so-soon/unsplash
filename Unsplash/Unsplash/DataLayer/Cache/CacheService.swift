@@ -14,7 +14,7 @@ enum CacheError : Error {
 
 protocol CacheService {
     func requestImage(request: ImageRequestDTO, completion: @escaping (Result<AnyObject,CacheError>) -> Void)
-    func cachingImage(key: String, data : AnyObject) -> Bool
+    func cachingImage(url: String, data : AnyObject) -> Bool
 }
 
 class CacheServiceImplementation: CacheService{
@@ -35,10 +35,10 @@ class CacheServiceImplementation: CacheService{
         
     }
     
-    func cachingImage(key: String, data : AnyObject) -> Bool{
+    func cachingImage(url: String, data : AnyObject) -> Bool{
         let dataFromAnyObject = data as! Data
         let uiImageData = UIImage(data: dataFromAnyObject)
-        if let key = key.data(using: .utf8)?.base64EncodedString(){
+        if let key = url.data(using: .utf8)?.base64EncodedString(){
             cacheStorage.setObject(uiImageData as AnyObject, forKey: key as NSString)
             return true
         }else{

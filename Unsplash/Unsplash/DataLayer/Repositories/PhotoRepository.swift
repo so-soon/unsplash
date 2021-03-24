@@ -37,7 +37,7 @@ class PhotoRepositoryImplementation: PhotoRepository {
                     self?.apiService.requestImage(request: request){result in
                         switch result {
                         case .success(let responseDTO):
-                            _ = self?.cacheService.cachingImage(key: request.url, data: responseDTO.data as AnyObject)
+                            _ = self?.cacheService.cachingImage(url: request.url, data: responseDTO.data as AnyObject)
                             completion(.success(responseDTO.data))
                         case .failure(let error):
                             completion(.failure(error))

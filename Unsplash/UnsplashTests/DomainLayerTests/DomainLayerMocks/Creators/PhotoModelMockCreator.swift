@@ -32,10 +32,10 @@ class PhotoListMockCreator {
             return value
         }
     }
-    func createTenMockData() -> [PhotoModel] {
+    func createMockData(total: Int = 10) -> [PhotoModel] {
         var mockData : [PhotoModel] = []
         
-        for _ in 0..<10{
+        for _ in 0..<total{
             let rand = Int.random(in: 0..<10)
             mockData.append(PhotoModel(id: mockId[rand], userName: mockUserName[rand], imageURL: mockImageURL[rand], width: mockWidth[rand], height: mockHeight[rand]))
         }

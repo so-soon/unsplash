@@ -17,7 +17,7 @@ class PhotoListRepositoryMock: PhotoListRepository {
         self.photoListData = photoListData
     }
     
-    func setSearchMockData(searchWord: String, photoListData: [PhotoModel]){
+    func setMockData(searchWord: String, photoListData: [PhotoModel]){
         self.searchPhotoListDataDict[searchWord] = photoListData
     }
     

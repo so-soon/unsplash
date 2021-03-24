@@ -24,7 +24,7 @@ class FetchPhotoImageUseCaseTest: XCTestCase {
         
         //Given
         
-        let expectedPhotoListData = photoListCreator.createTenMockData()
+        let expectedPhotoListData = photoListCreator.createMockData()
         let row = Int.random(in: 0..<10)
         
         let expectedImageData = imageDataCreator.createMockData(url: expectedPhotoListData[row].imageURL)
@@ -37,7 +37,7 @@ class FetchPhotoImageUseCaseTest: XCTestCase {
             case .success(let imgData):
                 XCTAssertEqual(expectedImageData, imgData)
             case .failure(_):
-                XCTAssertTrue(false)
+                XCTAssert(false)
             }
         }
     }
@@ -46,7 +46,7 @@ class FetchPhotoImageUseCaseTest: XCTestCase {
         
         //Given
         
-        let expectedPhotoListData = photoListCreator.createTenMockData()
+        let expectedPhotoListData = photoListCreator.createMockData()
         let row = Int.random(in: 0..<10)
         
         let expectedImageData = imageDataCreator.createMockData(url: expectedPhotoListData[row].imageURL)
@@ -58,9 +58,9 @@ class FetchPhotoImageUseCaseTest: XCTestCase {
         useCase.execute(imageURL: expectedPhotoListData[row].imageURL, cached: {_ in}){result in
             switch result {
             case .success(_):
-                XCTAssertTrue(false)
+                XCTAssert(false)
             case .failure(_):
-                XCTAssertTrue(true)
+                XCTAssert(true)
             }
         }
     }
@@ -69,7 +69,7 @@ class FetchPhotoImageUseCaseTest: XCTestCase {
         
         //Given
         
-        let expectedPhotoListData = photoListCreator.createTenMockData()
+        let expectedPhotoListData = photoListCreator.createMockData()
         let row = Int.random(in: 0..<10)
         
         let expectedImageData = imageDataCreator.createMockData(url: expectedPhotoListData[row].imageURL)

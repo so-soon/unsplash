@@ -23,7 +23,7 @@ class PhotoDetailPresenterTest: XCTestCase {
     var presenter: PhotoDetailPresenterImplementation!
     
     override func setUp() {
-        let photoListData = photoListCreator.createTenMockData()
+        let photoListData = photoListCreator.createMockData()
         presenter = PhotoDetailPresenterImplementation(view: viewMock,
                                                        fetchPhotoImageUseCase: fetchPhotoImageUseCaseMock,
                                                        router: routerMock,
@@ -35,7 +35,7 @@ class PhotoDetailPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedData = photoListCreator.createTenMockData()
+        let expectedData = photoListCreator.createMockData()
         presenter.photoListData = expectedData
         let row = expectedData.count + 1
         
@@ -53,7 +53,7 @@ class PhotoDetailPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedPhotoListData = photoListCreator.createTenMockData()
+        let expectedPhotoListData = photoListCreator.createMockData()
         presenter.photoListData = expectedPhotoListData
         let row = Int.random(in: 0..<10)
         
@@ -74,7 +74,7 @@ class PhotoDetailPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedPhotoListData = photoListCreator.createTenMockData()
+        let expectedPhotoListData = photoListCreator.createMockData()
         presenter.photoListData = expectedPhotoListData
         let row = Int.random(in: 0..<10)
         
@@ -115,7 +115,7 @@ class PhotoDetailPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedPhotoListData = photoListCreator.createTenMockData()
+        let expectedPhotoListData = photoListCreator.createMockData()
         delegateMock.setMockData(photoListData: expectedPhotoListData)
         let row = Int.random(in: 0..<10)
         
@@ -133,7 +133,7 @@ class PhotoDetailPresenterTest: XCTestCase {
         
         //Given
         
-        let expectedPhotoListData = photoListCreator.createTenMockData()
+        let expectedPhotoListData = photoListCreator.createMockData()
         delegateMock.setMockData(photoListData: expectedPhotoListData)
         let row = Int.random(in: 0..<10)
         

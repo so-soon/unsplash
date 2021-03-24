@@ -17,7 +17,7 @@ protocol PhotoListRepository {
 }
 
 class PhotoListRepositoryImplementaiton: PhotoListRepository{
-    let apiService : APIService
+    private let apiService : APIService
     private var page = 0
     private var totalPages : Int?
     private var prevSearchWord : String?
@@ -46,7 +46,7 @@ class PhotoListRepositoryImplementaiton: PhotoListRepository{
         page += 1
         
         if isNewSearchWord(searchWord: searchWord){
-            flushPhotoListRepository()
+            flushPhotoListRepository(resetPage: 1)
             self.prevSearchWord = searchWord
         }
         
@@ -64,7 +64,7 @@ class PhotoListRepositoryImplementaiton: PhotoListRepository{
                 self?.totalPages = responseDTO.total_pages
                 completion(.success(responseDTO.results.map{$0.toDomain()}))
             case .failure(let error):
-                self?.flushPhotoListRepository()
+                self?.flushPhotoListRepository(resetPage: 0)
                 completion(.failure(error))
             }
         }
@@ -73,25 +73,22 @@ class PhotoListRepositoryImplementaiton: PhotoListRepository{
     
     
     //MARK:- Private
-    private func flushPhotoListRepository(){
-        self.page = 1
+    private func flushPhotoListRepository(resetPage: Int){
+        self.page = resetPage
         self.totalPages = nil
     }
     
     private func isNewSearchWord(searchWord: String) -> Bool{
         if let prevSearchWord = self.prevSearchWord {
             return prevSearchWord != searchWord
-        }else{
-            return true
         }
+        return true
     }
     
     private func isReuqestPageValid() -> Bool {
         if let totalPages = self.totalPages {
             return self.page <= totalPages
-        }else{
-            return true
         }
-        
+        return true
     }
 }
