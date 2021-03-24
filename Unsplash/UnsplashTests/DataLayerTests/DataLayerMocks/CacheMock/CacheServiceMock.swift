@@ -29,9 +29,8 @@ class CacheServiceMock: CacheService {
         
     }
     
-    func cachingImage(url: String, data: AnyObject) -> Bool {
+    func cachingImage(url: String, data: AnyObject){
         cacheStorageMock[url] = data
-        return true
     }
     
     func reset(){

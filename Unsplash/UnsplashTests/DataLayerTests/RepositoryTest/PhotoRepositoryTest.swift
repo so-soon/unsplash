@@ -26,7 +26,7 @@ class PhotoRepositoryTest: XCTestCase {
         //Given
         let expectation = self.expectation(description: "Cache Data fetched")
         let url = "https://api\(Int.random(in: 1..<10)).com"
-        let expectedImageData = imageDataCreator.createMockData(url: url)
+        let expectedImageData = imageDataCreator.createMockDataWithURL(url: url)
         var returnedImageData : Data!
         
         cacheServiemock.setMockData(url: url, data: expectedImageData)
@@ -52,7 +52,7 @@ class PhotoRepositoryTest: XCTestCase {
         
         let expectation = self.expectation(description: "Data cached")
         let url = "https://api\(Int.random(in: 1..<10)).com"
-        let expectedImageData = imageDataCreator.createMockData(url: url)
+        let expectedImageData = imageDataCreator.createMockDataWithURL(url: url)
         cacheServiemock.isSucessMode = false
         
         apiServiceMock.setMockData(imgData: expectedImageData)
@@ -77,7 +77,7 @@ class PhotoRepositoryTest: XCTestCase {
         
         let expectation = self.expectation(description: "API Data fetched")
         let url = "https://api\(Int.random(in: 1..<10)).com"
-        let expectedImageData = imageDataCreator.createMockData(url: url)
+        let expectedImageData = imageDataCreator.createMockDataWithURL(url: url)
         var returnedImageData : Data!
         cacheServiemock.isSucessMode = false
         

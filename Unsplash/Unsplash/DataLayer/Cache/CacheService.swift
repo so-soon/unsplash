@@ -9,12 +9,11 @@ import UIKit
 
 enum CacheError : Error {
     case kCacheNotFoundError
-    case kKeyConversionError
 }
 
 protocol CacheService {
     func requestImage(request: ImageRequestDTO, completion: @escaping (Result<AnyObject,CacheError>) -> Void)
-    func cachingImage(url: String, data : AnyObject) -> Bool
+    func cachingImage(url: String, data : AnyObject)
 }
 
 class CacheServiceImplementation: CacheService{
@@ -23,26 +22,20 @@ class CacheServiceImplementation: CacheService{
     private let cacheStorage = NSCache<NSString, AnyObject>()
     
     func requestImage(request: ImageRequestDTO, completion: @escaping (Result<AnyObject,CacheError>) -> Void){
-        if let key = request.url.data(using: .utf8)?.base64EncodedString(){
-            guard let imageData = self.cacheStorage.object(forKey: key as NSString) else{
-                completion(.failure(.kCacheNotFoundError))
-                return
-            }
-            completion(.success(imageData))
-        }else{
-            completion(.failure(.kKeyConversionError))
+        let key = request.url.data(using: .utf8)!.base64EncodedString()
+        guard let imageData = self.cacheStorage.object(forKey: key as NSString) else{
+            completion(.failure(.kCacheNotFoundError))
+            return
         }
+        completion(.success(imageData))
+        
         
     }
     
-    func cachingImage(url: String, data : AnyObject) -> Bool{
+    func cachingImage(url: String, data : AnyObject){
         let dataFromAnyObject = data as! Data
         let uiImageData = UIImage(data: dataFromAnyObject)
-        if let key = url.data(using: .utf8)?.base64EncodedString(){
+        let key = url.data(using: .utf8)!.base64EncodedString()
             cacheStorage.setObject(uiImageData as AnyObject, forKey: key as NSString)
-            return true
-        }else{
-            return false
-        }
     }
 }

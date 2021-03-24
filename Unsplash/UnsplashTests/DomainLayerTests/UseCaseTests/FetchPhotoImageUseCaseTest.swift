@@ -27,7 +27,7 @@ class FetchPhotoImageUseCaseTest: XCTestCase {
         let expectedPhotoListData = photoListCreator.createMockData()
         let row = Int.random(in: 0..<10)
         
-        let expectedImageData = imageDataCreator.createMockData(url: expectedPhotoListData[row].imageURL)
+        let expectedImageData = imageDataCreator.createMockDataWithURL(url: expectedPhotoListData[row].imageURL)
         photoRepository.setMockData(photoImageData: expectedImageData)
         
         //When,Then
@@ -49,7 +49,7 @@ class FetchPhotoImageUseCaseTest: XCTestCase {
         let expectedPhotoListData = photoListCreator.createMockData()
         let row = Int.random(in: 0..<10)
         
-        let expectedImageData = imageDataCreator.createMockData(url: expectedPhotoListData[row].imageURL)
+        let expectedImageData = imageDataCreator.createMockDataWithURL(url: expectedPhotoListData[row].imageURL)
         photoRepository.setMockData(photoImageData: expectedImageData)
         photoRepository.isSucessMode = false
         
@@ -72,7 +72,7 @@ class FetchPhotoImageUseCaseTest: XCTestCase {
         let expectedPhotoListData = photoListCreator.createMockData()
         let row = Int.random(in: 0..<10)
         
-        let expectedImageData = imageDataCreator.createMockData(url: expectedPhotoListData[row].imageURL)
+        let expectedImageData = imageDataCreator.createMockDataWithURL(url: expectedPhotoListData[row].imageURL)
         photoRepository.setMockData(photoImageData: expectedImageData)
         photoRepository.isCacheMode = true
         

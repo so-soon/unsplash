@@ -57,7 +57,7 @@ class PhotoDetailPresenterTest: XCTestCase {
         presenter.photoListData = expectedPhotoListData
         let row = Int.random(in: 0..<10)
         
-        let expectedPhotoImageData = imageDataCreator.createMockData(url: expectedPhotoListData[row].imageURL)
+        let expectedPhotoImageData = imageDataCreator.createMockDataWithURL(url: expectedPhotoListData[row].imageURL)
         fetchPhotoImageUseCaseMock.setMockData(expectedPhotoImageData)
         
         //When
@@ -78,7 +78,7 @@ class PhotoDetailPresenterTest: XCTestCase {
         presenter.photoListData = expectedPhotoListData
         let row = Int.random(in: 0..<10)
         
-        let expectedPhotoImageData = imageDataCreator.createMockData(url: expectedPhotoListData[row].imageURL)
+        let expectedPhotoImageData = imageDataCreator.createMockDataWithURL(url: expectedPhotoListData[row].imageURL)
         fetchPhotoImageUseCaseMock.setMockData(expectedPhotoImageData)
         presenter.configure(cell: cellMock, forRow: row)
         cellMock.image = nil
