@@ -25,7 +25,7 @@ protocol APIService {
 class APIServiceImplementation: APIService {
     static let shared = APIServiceImplementation()
     private let baseURL = "https://api.unsplash.com"
-    private let clientID = "CpqfOYCldalTto6DyStDUk14-WBpChlfM1gxSzD-UlQ"
+    private let clientID = "VVA9b5UOHPNH4EVM4lZdeaGJICE195IJWPZs8_6brro"
     private let requestFactory = NetworkRequestFactoryImplementation()
     
     
@@ -154,7 +154,7 @@ class APIServiceImplementation: APIService {
         do{
             let jsonData = try JSONDecoder().decode(T.self, from: data)
             return jsonData
-        }catch(let error){
+        }catch{
             return nil
         }
     }

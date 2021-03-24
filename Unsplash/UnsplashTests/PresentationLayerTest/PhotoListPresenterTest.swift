@@ -40,7 +40,50 @@ class PhotoListPresenterTest: XCTestCase {
         XCTAssertEqual(expectedData, presenter.photoListData)
     }
     
-    func test_GivenRowLargerThanDataSize_WhenConfigure_ThenReturn(){
+    func test_GivenDefaultUseCaseFailed_WhenViewDidLoad_ThenReturnError(){
+        
+        //Given
+        
+        var expectedData : [PhotoModel] = []
+        for _ in 0..<10{
+            expectedData.append(PhotoModel(id: NetworkErrorHandler.errorImageId,
+                                        userName: NetworkErrorHandler.errorImageId,
+                                        imageURL: NetworkErrorHandler.errorImageURL,
+                                        width: NetworkErrorHandler.errorImageWidth,
+                                        height: NetworkErrorHandler.errorImageHeight))
+        }
+        fetchDefaultPhotoListUseCaseMock.isSucessMode = false
+        
+        //When
+        presenter.viewDidLoad()
+        
+        //Then
+        XCTAssertEqual(expectedData, presenter.photoListData)
+    }
+    
+    func test_GivenCacheMode_WhenConfigure_ThenReturnCacheData(){
+        
+        //Given
+        
+        let expectedPhotoListData = photoListCreator.createMockData()
+        presenter.photoListData = expectedPhotoListData
+        let row = Int.random(in: 0..<expectedPhotoListData.count)
+        
+        let expectedPhotoImageData = imageDataCreator.createMockDataWithURL(url: expectedPhotoListData[row].imageURL)
+        fetchPhotoImageUseCaseMock.setMockData(expectedPhotoImageData)
+        
+        fetchPhotoImageUseCaseMock.isCacheMode = true
+        
+        //When
+        
+        presenter.configure(cell: cellMock, forRow: row)
+        
+        //Then
+        
+        XCTAssertEqual(expectedPhotoImageData, cellMock.image)
+    }
+    
+    func test_GivenRowLargerThanDataSize_WhenConfigure_ThenReturnNotNilImage(){
         
         //Given
         
@@ -63,7 +106,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         let expectedPhotoListData = photoListCreator.createMockData()
         presenter.photoListData = expectedPhotoListData
-        let row = Int.random(in: 0..<10)
+        let row = Int.random(in: 0..<expectedPhotoListData.count)
         
         let expectedPhotoImageData = imageDataCreator.createMockDataWithURL(url: expectedPhotoListData[row].imageURL)
         fetchPhotoImageUseCaseMock.setMockData(expectedPhotoImageData)
@@ -77,13 +120,13 @@ class PhotoListPresenterTest: XCTestCase {
         XCTAssertEqual(expectedPhotoImageData, cellMock.image)
     }
     
-    func test_GivenDuplicatedURL_WhenConfigure_ThenReturn(){
+    func test_GivenDuplicatedURL_WhenConfigure_ThenReturnNotNilImage(){
         
         //Given
         
         let expectedPhotoListData = photoListCreator.createMockData()
         presenter.photoListData = expectedPhotoListData
-        let row = Int.random(in: 0..<10)
+        let row = Int.random(in: 0..<expectedPhotoListData.count)
         
         let expectedPhotoImageData = imageDataCreator.createMockDataWithURL(url: expectedPhotoListData[row].imageURL)
         fetchPhotoImageUseCaseMock.setMockData(expectedPhotoImageData)
@@ -98,6 +141,26 @@ class PhotoListPresenterTest: XCTestCase {
         
         XCTAssertNil(cellMock.image)
     }
+    
+    func test_GivenFailedUseCase_WhenConfigure_ThenReturnErrorImage(){
+        
+        //Given
+        let expectedPhotoListData = photoListCreator.createMockData()
+        presenter.photoListData = expectedPhotoListData
+        let expectedPhotoImageData = NetworkErrorHandler.shared.getErrorImage()
+        let row = Int.random(in: 0..<expectedPhotoListData.count)
+        
+        fetchPhotoImageUseCaseMock.isCacheMode = false
+        fetchPhotoImageUseCaseMock.isSucessMode = false
+        //When
+        
+        presenter.configure(cell: cellMock, forRow: row)
+        
+        //Then
+        
+        XCTAssertEqual(expectedPhotoImageData, cellMock.image)
+    }
+    
     
     func test_GivenRandomData_WhenNumberOfRowsInSections_ThenValidCount(){
         
@@ -140,7 +203,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         let expectedData = photoListCreator.createMockData()
         presenter.photoListData = expectedData
-        let row = Int.random(in: 0..<10)
+        let row = Int.random(in: 0..<expectedData.count)
         let expectedHeight = Float(expectedData[row].height) / Float(expectedData[row].width)
         //When
         
@@ -158,7 +221,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         let expectedData = photoListCreator.createMockData()
         presenter.photoListData = expectedData
-        let row = Int.random(in: 0..<10)
+        let row = Int.random(in: 0..<expectedData.count)
         
         //When
         
@@ -176,7 +239,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         let expectedData = photoListCreator.createMockData()
         presenter.photoListData = expectedData
-        let row = Int.random(in: 0..<10)
+        let row = Int.random(in: 0..<expectedData.count)
         
         //When
         
@@ -194,7 +257,7 @@ class PhotoListPresenterTest: XCTestCase {
         
         let expectedData = photoListCreator.createMockData()
         presenter.photoListData = expectedData
-        let row = Int.random(in: 0..<10)
+        let row = Int.random(in: 0..<expectedData.count)
         
         //When
         
@@ -224,6 +287,28 @@ class PhotoListPresenterTest: XCTestCase {
         
         XCTAssertEqual(presenter.photoListData, [])
         
+    }
+    
+    func test_GivenFailedSearchUseCase_WhenSearchTextFieldEndEdit_ThenReturnError(){
+        
+        //Given
+        let searchWord = "SEARCH_WORD"
+        var expectedData : [PhotoModel] = []
+        for _ in 0..<10{
+            expectedData.append(PhotoModel(id: NetworkErrorHandler.errorImageId,
+                                        userName: NetworkErrorHandler.errorImageId,
+                                        imageURL: NetworkErrorHandler.errorImageURL,
+                                        width: NetworkErrorHandler.errorImageWidth,
+                                        height: NetworkErrorHandler.errorImageHeight))
+        }
+        searchPhotoListUseCaseMock.isSucessMode = false
+        
+        //When
+        
+        presenter.searchTextFieldEndEdit(with: searchWord)
+        
+        //Then
+        XCTAssertEqual(expectedData, presenter.photoListData)
     }
     
     func test_GivenNilSearchWord_WhenSearchTextFieldEndEdit_ThenNotFetchData(){
@@ -307,7 +392,65 @@ class PhotoListPresenterTest: XCTestCase {
         
     }
     
+    func test_WhenFetchPhotoListFromDetailPresenter_ThenReturnValidData(){
+        
+        //Given
+        
+        let expectedData = photoListCreator.createMockData()
+        fetchDefaultPhotoListUseCaseMock.setMockData(expectedData)
+        
+        //When
+        
+        let returnedData = presenter.fetchPhotoListFromDetailPresetner()
+        
+        //Then
+        
+        XCTAssertEqual(expectedData, returnedData)
+    }
     
+    func test_WhenMovePhotoFocus_ThenChangeViewsFocusRow(){
+        
+        //Given
+        
+        let row = Int.random(in: 0..<100)
+        
+        //When
+        
+        presenter.movePhotoFocus(to: row)
+        
+        //Then
+        
+        XCTAssertEqual(row, viewMock.resultMoveSrollFocus)
+        
+    }
+    
+    func test_WhenDelegateViewWillAppear_ThenCallDelegateMethod(){
+        
+        //Given
+        
+        //When
+        
+        presenter.viewWillAppear()
+        
+        //Then
+        
+        XCTAssertTrue(viewMock.resultDetailViewWillAppear)
+        
+    }
+    
+    func test_WhenDelegateViewWillDisappear_ThenCallDelegateMethod(){
+        
+        //Given
+        
+        //When
+        
+        presenter.viewWillDisappear()
+        
+        //Then
+        
+        XCTAssertTrue(viewMock.resultDetailViewWillDisappear)
+        
+    }
     
     override func tearDown() {
         fetchPhotoImageUseCaseMock.reset()

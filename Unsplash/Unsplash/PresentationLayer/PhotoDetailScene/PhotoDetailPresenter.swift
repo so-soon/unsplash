@@ -86,8 +86,11 @@ class PhotoDetailPresenterImplementation: PhotoDetailPresenter{
     }
     
     func cellReachEndIndex(at row: Int){
-        self.photoListData = self.delegate?.fetchPhotoListFromDetailPresetner() ?? []
-        self.view?.reloadCollectionView()
+        if self.delegate != nil {
+            self.photoListData = self.delegate!.fetchPhotoListFromDetailPresetner()
+            self.view?.reloadCollectionView()
+        }
+        
     }
     
     func changePhotoFocus(to row: Int){

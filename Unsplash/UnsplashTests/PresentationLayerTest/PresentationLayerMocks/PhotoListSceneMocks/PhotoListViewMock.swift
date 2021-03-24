@@ -12,7 +12,7 @@ class PhotoListViewMock : PhotoListView {
     var resultReloadTableView : Bool = false
     var resultMoveSrollFocus : Int = -1
     var resultDetailViewWillAppear : Bool = false
-    var resultDetailViewWilldisappear : Bool = false
+    var resultDetailViewWillDisappear : Bool = false
     
     func reloadTableView() {
         self.resultReloadTableView = true
@@ -27,14 +27,14 @@ class PhotoListViewMock : PhotoListView {
     }
     
     func detailViewWilldisappear() {
-        self.resultDetailViewWilldisappear = true
+        self.resultDetailViewWillDisappear = true
     }
     
     func reset(){
         self.resultReloadTableView = false
         self.resultMoveSrollFocus = -1
         self.resultDetailViewWillAppear = false
-        self.resultDetailViewWilldisappear = false
+        self.resultDetailViewWillDisappear = false
     }
     
     

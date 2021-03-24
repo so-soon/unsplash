@@ -35,7 +35,7 @@ class PhotoListRepositoryImplementaiton: PhotoListRepository{
         
         let requestDTO = PhotoListRequestDTO(page: page)
         
-        apiService.requestPhotoList(request: requestDTO){[weak self] result in
+        apiService.requestPhotoList(request: requestDTO){result in
             switch result {
             case .success(let responseDTO):
                 completion(.success(responseDTO.map{$0.toDomain()}))

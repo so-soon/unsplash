@@ -31,6 +31,53 @@ class PhotoDetailPresenterTest: XCTestCase {
                                                        photoListData: photoListData)
     }
     
+    func test_WhenViewDidLoad_Then(){
+        presenter.viewDidLoad()
+        
+        XCTAssert(true)
+    }
+    
+    func test_GivenCacheMode_WhenConfigure_ThenReturnCacheData(){
+        
+        //Given
+        
+        let expectedPhotoListData = photoListCreator.createMockData()
+        presenter.photoListData = expectedPhotoListData
+        let row = Int.random(in: 0..<expectedPhotoListData.count)
+        
+        let expectedPhotoImageData = imageDataCreator.createMockDataWithURL(url: expectedPhotoListData[row].imageURL)
+        fetchPhotoImageUseCaseMock.setMockData(expectedPhotoImageData)
+        
+        fetchPhotoImageUseCaseMock.isCacheMode = true
+        
+        //When
+        
+        presenter.configure(cell: cellMock, forRow: row)
+        
+        //Then
+        
+        XCTAssertEqual(expectedPhotoImageData, cellMock.image)
+    }
+    
+    func test_GivenFailedUseCase_WhenConfigure_ThenReturnErrorImage(){
+        
+        //Given
+        let expectedPhotoListData = photoListCreator.createMockData()
+        presenter.photoListData = expectedPhotoListData
+        let expectedPhotoImageData = NetworkErrorHandler.shared.getErrorImage()
+        let row = Int.random(in: 0..<expectedPhotoListData.count)
+        
+        fetchPhotoImageUseCaseMock.isCacheMode = false
+        fetchPhotoImageUseCaseMock.isSucessMode = false
+        //When
+        
+        presenter.configure(cell: cellMock, forRow: row)
+        
+        //Then
+        
+        XCTAssertEqual(expectedPhotoImageData, cellMock.image)
+    }
+    
     func test_GivenRowLargetThanDataSize_WhenConfigure_ThenReturn(){
         
         //Given

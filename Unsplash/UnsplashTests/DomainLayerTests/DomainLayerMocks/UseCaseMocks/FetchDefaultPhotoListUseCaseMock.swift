@@ -10,15 +10,22 @@ import Foundation
 
 class FetchDefaultPhotoListUseCaseMock : FetchDefaultPhotoListUseCase{
     var photoListDataMock : [PhotoModel]?
+    var isSucessMode = true
     
     func setMockData(_ data: [PhotoModel]){
         self.photoListDataMock = data
     }
     func execute(completion: @escaping (Result<[PhotoModel], Error>) -> Void) {
-        completion(.success(photoListDataMock!))
+        if isSucessMode{
+            completion(.success(photoListDataMock!))
+        }else{
+            completion(.failure(PhotoListRepositoryError.kInvalidPageRequestError as Error))
+        }
+        
     }
     
     func reset(){
+        self.isSucessMode = true
         self.photoListDataMock = nil
     }
 }

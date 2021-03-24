@@ -167,6 +167,7 @@ class PhotoListPresenterImplementation : PhotoListPresenter {
     
     private func errorHandler(_ error : Error) {
         print(error.localizedDescription)
+
         var photoList : [PhotoModel] = []
         
         for _ in 0..<10{
