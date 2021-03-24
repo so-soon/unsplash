@@ -8,12 +8,6 @@
 
 <img src="https://user-images.githubusercontent.com/59683503/112339957-76a6e700-8d03-11eb-996f-3394e9eb9eb9.png" width="375" height="667">
 
-[0.Environment](#"env")
-
-[1.Architecture](#"arch")
-
-[2.Unit Test](#"unit")
-
 
 
 <h2><div id="env">0. Environment</div></h2>
